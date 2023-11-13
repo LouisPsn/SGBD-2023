@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS voitures (
     marque CHAR(32),
     typ CHAR(32),
     couleur CHAR(32),
-    état CHAR(32),
+    etat CHAR(32),
     divers CHAR(64),
     id_etudiant SMALLSERIAL,
     FOREIGN KEY (id_etudiant) REFERENCES etudiants(id_etudiant)

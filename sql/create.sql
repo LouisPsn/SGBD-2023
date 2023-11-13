@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS dates (
 
 CREATE TABLE IF NOT EXISTS voyages (
     id_voyages SMALLSERIAL PRIMARY KEY,
-    FOREIGN KEY (id_dates) REFERENCES (id_dates)
+    FOREIGN KEY id_dates REFERENCES dates(id_dates)
 );
 
 

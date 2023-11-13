@@ -8,19 +8,21 @@ CREATE TABLE IF NOT EXISTS etudiants (
 
 
 CREATE TABLE IF NOT EXISTS dates (
-    id_dates SMALLSERIAL PRIMARY KEY,
+    id_date SMALLSERIAL PRIMARY KEY,
     dat TIMESTAMP UNIQUE NOT NULL
 );
 
 
 CREATE TABLE IF NOT EXISTS voyages (
-    id_voyages SMALLSERIAL PRIMARY KEY,
-    FOREIGN KEY id_dates REFERENCES dates(id_dates)
+    id_voyage SMALLSERIAL PRIMARY KEY,
+    id_date SMALLSERIAL,
+    FOREIGN KEY (id_date) REFERENCES dates(id_date)
 );
 
 
 CREATE TABLE IF NOT EXISTS reservations (
     id_reservations SMALLSERIAL PRIMARY KEY,
+    id_voyage SMALLSERIAL,
     FOREIGN KEY (id_voyage) REFERENCES voyages(id_voyage)
 );
 
@@ -31,13 +33,14 @@ CREATE TABLE IF NOT EXISTS villes (
 );
 
 
-CREATE TABLE IF NOT EXISTS voiture (
-    id_voitures SMALLSERIAL PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS voitures (
+    id_voiture SMALLSERIAL PRIMARY KEY,
     marque CHAR(32),
     typ CHAR(32),
     couleur CHAR(32),
     nombre_places SMALLINT NOT NULL,
     état CHAR(32),
     divers CHAR(64),
-    FOREIGN KEY (id_etudiants) REFERENCES etudiants(id_etudiants)
+    id_etudiant SMALLSERIAL,
+    FOREIGN KEY (id_etudiant) REFERENCES etudiants(id_etudiant)
 );

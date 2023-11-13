@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS avis (
 );
 
 CREATE TABLE IF NOT EXISTS reservations (
-    id_reservations SMALLSERIAL PRIMARY KEY,
+    id_reservation SMALLSERIAL PRIMARY KEY,
     id_voyage SMALLSERIAL,
     FOREIGN KEY (id_voyage) REFERENCES voyages(id_voyage),
     id_date SMALLSERIAL,

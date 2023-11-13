@@ -36,11 +36,12 @@ CREATE TABLE IF NOT EXISTS villes (
 CREATE TABLE IF NOT EXISTS voitures (
     id_voiture SMALLSERIAL PRIMARY KEY,
     marque CHAR(32),
+    modele CHAR(32),
     typ CHAR(32),
     couleur CHAR(32),
     nombre_places SMALLINT NOT NULL,
     état CHAR(32),
     divers CHAR(64),
-    id_etudiant SMALLSERIAL,
+    id_etudiant SMALLSERIAL NOT NULL,
     FOREIGN KEY (id_etudiant) REFERENCES etudiants(id_etudiant)
 );

@@ -15,15 +15,30 @@ CREATE TABLE IF NOT EXISTS dates (
 
 CREATE TABLE IF NOT EXISTS voyages (
     id_voyage SMALLSERIAL PRIMARY KEY,
-    id_date SMALLSERIAL,
-    FOREIGN KEY (id_date) REFERENCES dates(id_date)
+    nombre_places SMALLINT NOT NULL,
+    id_voiture SMALLSERIAL,
+    FOREIGN key (id_voiture) REFERENCES voitures(id_voiture)
 );
 
+CREATE TABLE IF NOT EXISTS avis (
+    id_avis SMALLSERIAL PRIMARY KEY,
+    id_etudiant SMALLSERIAL,
+    FOREIGN KEY (id_etudiant) REFERENCES etudiants(id_etudiant),
+    id_voyage SMALLSERIAL,
+    FOREIGN KEY (id_voyage) REFERENCES voyages(id_voyage),
+    note SMALLINT CHECK (note <= 5)
+);
 
 CREATE TABLE IF NOT EXISTS reservations (
-    id_reservations SMALLSERIAL PRIMARY KEY,
+    id_reservation SMALLSERIAL PRIMARY KEY,
     id_voyage SMALLSERIAL,
-    FOREIGN KEY (id_voyage) REFERENCES voyages(id_voyage)
+    FOREIGN KEY (id_voyage) REFERENCES voyages(id_voyage),
+    id_date SMALLSERIAL,
+    FOREIGN KEY (id_date) REFERENCES dates(id_date),
+    id_ville SMALLSERIAL,
+    FOREIGN KEY (id_ville) REFERENCES villes(id_ville),
+    id_etudiant SMALLSERIAL,
+    FOREIGN KEY (id_etudiant) REFERENCES etudiants(id_etudiant)
 );
 
 
@@ -32,6 +47,15 @@ CREATE TABLE IF NOT EXISTS villes (
     nom CHAR(32)
 );
 
+CREATE TABLE IF NOT EXISTS destinations (
+    id_destination SMALLSERIAL PRIMARY KEY,
+    id_date SMALLSERIAL,
+    FOREIGN KEY (id_date) REFERENCES dates(id_date),
+    id_ville SMALLSERIAL,
+    FOREIGN KEY (id_ville) REFERENCES villes(id_ville),
+    id_voyage SMALLSERIAL,
+    FOREIGN key (id_voyage) REFERENCES voyages(id_voyage)
+);
 
 CREATE TABLE IF NOT EXISTS voitures (
     id_voiture SMALLSERIAL PRIMARY KEY,
@@ -39,8 +63,7 @@ CREATE TABLE IF NOT EXISTS voitures (
     modele CHAR(32),
     typ CHAR(32),
     couleur CHAR(32),
-    nombre_places SMALLINT NOT NULL,
-    état CHAR(32),
+    etat CHAR(32),
     divers CHAR(64),
     id_etudiant SMALLSERIAL NOT NULL,
     FOREIGN KEY (id_etudiant) REFERENCES etudiants(id_etudiant)

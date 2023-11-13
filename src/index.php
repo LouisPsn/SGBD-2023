@@ -14,11 +14,19 @@
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
     crossorigin="anonymous"></script>
   <?php
-  // $database = ;
-  $conn = pg_pconnect("dbname=louis");
-  if (!$conn) {
-    echo "An error occurred.\n";
-    exit;
+  $host = 'localhost';
+  $port = '5432';
+  $database = 'louis';
+  $user = 'louis';
+  $password = 'louis';
+
+  $connectString = 'host=' . $host . ' port=' . $port . ' dbname=' . $database .
+    ' user=' . $user . ' password=' . $password;
+
+
+  $link = pg_connect($connectString);
+  if (!$link) {
+    die('Error: Could not connect: ' . pg_last_error());
   }
   ?>
   <center>

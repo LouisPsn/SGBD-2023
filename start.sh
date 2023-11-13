@@ -29,6 +29,9 @@ set +o allexport
 
 # Connect to the database, run the query, then disconnect
 psql -f sql/create.sql
+
+# Ajouter les inserts python en commançant par le insert.py écrasant le fichier insert.sql
+
 psql -f sql/insert.sql
 psql -f sql/select.sql
 php -t src/ -S localhost:8000

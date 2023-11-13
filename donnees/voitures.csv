@@ -1,1 +1,5 @@
-marque;type;couleur;nombre_places;état;divers
+marque;modele;type;couleur;état;divers
+Peugeot;208;Citadine;Gris;Très bon état;
+Renault;Twingo;Citadine;Bleu;Très bon état;
+Renault;R5;Collection;Blanc;Dans son jus;Penser à fermer la vitre avec les mains
+Renault;Clio Campus;Citadine;Bleu Kangoo;Embrayage fatigué;Ambiance

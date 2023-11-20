@@ -20,9 +20,23 @@
   </center>
   <?php
   include "menu.php";
-  ?>
-  <?php
-  $query = 'select * from vehicule';
+
+  $host = 'localhost';
+  $port = '5432';
+  $database = 'louis';
+  $user = 'louis';
+  $password = 'louis';
+
+  $connectString = 'host=' . $host . ' port=' . $port . ' dbname=' . $database .
+    ' user=' . $user . ' password=' . $password;
+
+
+  $link = pg_connect($connectString);
+  if (!$link) {
+    die('Error: Could not connect: ' . pg_last_error());
+  }
+
+  $query = 'select * from voitures;';
 
   $result = pg_query($query);
 
@@ -50,6 +64,8 @@
     $i = $i + 1;
   }
   pg_free_result($result);
+
+  echo '</table></body></html>';
   ?>
 </body>
 

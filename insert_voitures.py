@@ -14,6 +14,7 @@ for i in range(len(raw_data)):
             raw_data['couleur'][i]+"','"+
             raw_data['etat'][i]+"','"+
             raw_data['divers'][i]+"', "+
+            str(i)+
             ");\n")
 
 #close the file

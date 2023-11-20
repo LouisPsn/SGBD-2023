@@ -33,7 +33,7 @@ psql -f sql/create.sql
 # Ajouter les inserts python en commançant par le insert.py écrasant le fichier insert.sql
 
 python insert_etudiants.py
-python insert_voitures.py
+# python insert_voitures.py
 
 psql -f sql/insert.sql
 psql -f sql/select.sql

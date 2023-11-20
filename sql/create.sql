@@ -3,8 +3,8 @@ CREATE TABLE IF NOT EXISTS etudiants (
     nom CHAR(32) UNIQUE NOT NULL,
     prenom CHAR(32) UNIQUE NOT NULL,
     mail CHAR(64) NOT NULL,
-    mot_de_pass CHAR(64) NOT NULL,
-    date_de_naissance TIMESTAMP NOT NULL
+    mot_de_passe CHAR(64) NOT NULL,
+    date_de_naissance TIMESTAMP without time zone NOT NULL
 );
 
 

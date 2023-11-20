@@ -25,8 +25,6 @@ CREATE TABLE IF NOT EXISTS voitures (
 );
 
 
-
-
 CREATE TABLE IF NOT EXISTS voyages (
     id_voyage SMALLSERIAL PRIMARY KEY,
     nombre_places SMALLINT NOT NULL,
@@ -50,9 +48,6 @@ CREATE TABLE IF NOT EXISTS avis (
     FOREIGN KEY (id_voyage) REFERENCES voyages(id_voyage),
     note SMALLINT CHECK (note <= 5)
 );
-
-
-
 
 
 CREATE TABLE IF NOT EXISTS reservations (

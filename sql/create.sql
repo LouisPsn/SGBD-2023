@@ -7,10 +7,6 @@ CREATE TABLE IF NOT EXISTS etudiants (
     date_de_naissance TIMESTAMP NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS dates (
-    id_date SMALLSERIAL PRIMARY KEY,
-    dat TIMESTAMP UNIQUE NOT NULL
-);
 
 CREATE TABLE IF NOT EXISTS villes (
     id_ville SMALLSERIAL PRIMARY KEY,
@@ -20,6 +16,7 @@ CREATE TABLE IF NOT EXISTS villes (
 CREATE TABLE IF NOT EXISTS voitures (
     id_voiture SMALLSERIAL PRIMARY KEY,
     marque CHAR(32),
+    modele CHAR(32),
     typ CHAR(32),
     couleur CHAR(32),
     etat CHAR(32),
@@ -36,10 +33,8 @@ CREATE TABLE IF NOT EXISTS voyages (
     FOREIGN key (id_voiture) REFERENCES voitures(id_voiture)
 );
 
-CREATE TABLE IF NOT EXISTS destinations (
-    id_destination SMALLSERIAL PRIMARY KEY,
-    id_date SMALLSERIAL,
-    FOREIGN KEY (id_date) REFERENCES dates(id_date),
+CREATE TABLE IF NOT EXISTS etapes (
+    date TIMESTAMP,
     id_ville SMALLSERIAL,
     FOREIGN KEY (id_ville) REFERENCES villes(id_ville),
     id_voyage SMALLSERIAL,
@@ -61,10 +56,11 @@ CREATE TABLE IF NOT EXISTS reservations (
     confirmation SMALLINT CHECK (confirmation <= 1),
     id_voyage SMALLSERIAL,
     FOREIGN KEY (id_voyage) REFERENCES voyages(id_voyage),
-    id_date SMALLSERIAL,
-    FOREIGN KEY (id_date) REFERENCES dates(id_date),
-    id_ville SMALLSERIAL,
-    FOREIGN KEY (id_ville) REFERENCES villes(id_ville),
+    date TIMESTAMP,
+    id_ville_depart SMALLSERIAL,
+    FOREIGN KEY (id_ville_depart) REFERENCES villes(id_ville),
+    id_ville_arrive SMALLSERIAL,
+    FOREIGN KEY (id_ville_arrive) REFERENCES villes(id_ville), 
     id_etudiant SMALLSERIAL,
     FOREIGN KEY (id_etudiant) REFERENCES etudiants(id_etudiant)
 );

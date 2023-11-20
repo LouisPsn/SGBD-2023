@@ -1,7 +1,7 @@
-nom;prenom;mail
-Pierson;Louis;lpierson002@enseirb-matmeca.fr
-Vernant;Charlène;cvernant@enseirb-matmeca.fr
-Durand;Arthur;adurand@enseirb-matmeca.fr
-Bastien;Hugo;hbastien@enseirb-matmeca.fr
-Vacher;Léo;lvachet@enseirb-matmeca.fr
-Bonnet;Lilian;lbonnet005@enseirb-matmeca.fr
+nom;prenom;mail;mot_de_passe;date_de_naissance
+Pierson;Louis;lpierson002@enseirb-matmeca.fr;lpierson002;975430144
+Vernant;Charlène;cvernant@enseirb-matmeca.fr;cvernant;975430144
+Durand;Arthur;adurand@enseirb-matmeca.fr;adurand;975430144
+Bastien;Hugo;hbastien@enseirb-matmeca.fr;hbastien;975430144
+Vachet;Léo;lvachet@enseirb-matmeca.fr;lvachet;975430144
+Bonnet;Lilian;lbonnet005@enseirb-matmeca.fr;lbonnet005;975430144

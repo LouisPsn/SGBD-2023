@@ -16,6 +16,7 @@ CREATE TABLE IF NOT EXISTS villes (
 CREATE TABLE IF NOT EXISTS voitures (
     id_voiture SMALLSERIAL PRIMARY KEY,
     marque CHAR(32),
+    modele CHAR(32),
     typ CHAR(32),
     couleur CHAR(32),
     etat CHAR(32),

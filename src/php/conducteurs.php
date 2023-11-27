@@ -25,7 +25,7 @@
 
   $db_handle = pg_connect("host=" . $params['host'] . " port=" . $params['port'] . " password=" . $params['password']);
 
-  $sql = "SELECT * FROM etudiants;";
+  $sql = "SELECT * FROM etudiants JOIN voitures ON etudiants.id_etudiant = voitures.id_etudiant;";
   $result = pg_query($db_handle, $sql);
   ?>
 

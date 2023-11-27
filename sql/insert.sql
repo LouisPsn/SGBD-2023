@@ -7,4 +7,4 @@ INSERT INTO etudiants (nom, prenom, mail, mot_de_passe, date_de_naissance) VALUE
 INSERT INTO voitures (marque, modele, typ, couleur, etat, divers, id_etudiant) VALUES ('Peugeot','208','Citadine','Gris','Très bon état',' ', 1);
 INSERT INTO voitures (marque, modele, typ, couleur, etat, divers, id_etudiant) VALUES ('Renault','Twingo','Citadine','Bleu','Très bon état',' ', 2);
 INSERT INTO voitures (marque, modele, typ, couleur, etat, divers, id_etudiant) VALUES ('Renault','R5','Collection','Blanc','Dans son jus','Penser à fermer la vitre avec les mains', 5);
-INSERT INTO voitures (marque, modele, typ, couleur, etat, divers, id_etudiant) VALUES ('Renault','Clio Campus 2','Citadine','Bleu Kangoo','Embrayage fatigue','Ambiance', 6);
+INSERT INTO voitures (marque, modele, typ, couleur, etat, divers, id_etudiant) VALUES ('Renault','Clio Campus 2','Citadine','Bleu Kangoo','Embrayage fatigué','Ambiance', 6);

@@ -21,52 +21,58 @@
   <?php
   include "menu.php";
 
-  $host = 'localhost';
-  $port = '5432';
-  $database = 'louis';
-  $user = 'louis';
-  $password = 'louis';
+  $params = parse_ini_file('../../database.ini');
 
-  $connectString = 'host=' . $host . ' port=' . $port . ' dbname=' . $database .
-    ' user=' . $user . ' password=' . $password;
+  $db_handle = pg_connect("host=" . $params['host'] . " port=" . $params['port'] . " password=" . $params['password']);
 
-
-  $link = pg_connect($connectString);
-  if (!$link) {
-    die('Error: Could not connect: ' . pg_last_error());
-  }
-
-  $query = 'select * from voitures;';
-
-  $result = pg_query($query);
-
-  $i = 0;
-  echo '<html><body><table><tr>';
-  while ($i < pg_num_fields($result)) {
-    $fieldName = pg_field_name($result, $i);
-    echo '<td>' . $fieldName . '</td>';
-    $i = $i + 1;
-  }
-  echo '</tr>';
-  $i = 0;
-
-  while ($row = pg_fetch_row($result)) {
-    echo '<tr>';
-    $count = count($row);
-    $y = 0;
-    while ($y < $count) {
-      $c_row = current($row);
-      echo '<td>' . $c_row . '</td>';
-      next($row);
-      $y = $y + 1;
-    }
-    echo '</tr>';
-    $i = $i + 1;
-  }
-  pg_free_result($result);
-
-  echo '</table></body></html>';
+  $sql = "SELECT * FROM voitures;";
+  $result = pg_query($db_handle, $sql);
   ?>
-</body>
+
+  <div class="container">
+    <div class="row justify-content-center">
+
+      <!-- <div class="col-1"></div> -->
+      <div class="col">
+        <table class="table table-hover table-responsive" id="table_joueurs">
+          <thead>
+            <tr>
+              <th scope="col">ID Voiture</th>
+              <th scope="col">Marque</th>
+              <th scope="col">Modèle</th>
+              <th scope="col">Type</th>
+              <th scope="col">Couleur</th>
+              <th scope="col">État</th>
+              <th scope="col">Divers</th>
+              <th scope="col">Conducteur</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php
+
+            while ($row = pg_fetch_array($result)) {
+              $conducteur = pg_query($db_handle, "SELECT nom, prenom FROM etudiants JOIN voitures ON etudiants.id_etudiant = voitures.id_etudiant WHERE id_voiture = $row[0]");
+              $conducteur = pg_fetch_row($conducteur);
+              // $conducteurs = pg_execute($db_handle, "etudiants", Array($row["id_etudiant"]));
+              // $conducteurs = listeAttributs($conducteurs);
+              echo "<tr>";
+              echo "<th scope=\"row\">" . $row[0] . "</th>";
+              echo "<td>" . $row[1] . "</td>";
+              echo "<td>" . $row[2] . "</td>";
+              echo "<td>" . $row[3] . "</td>";
+              echo "<td>" . $row[4] . "</td>";
+              echo "<td>" . $row[5] . "</td>";
+              echo "<td>" . $row[6] . "</td>";
+              echo "<td>" . $conducteur[0] . $conducteur[1] . "</td>";
+              echo "</tr>";
+            }
+            ?>
+          </tbody>
+        </table>
+      </div>
+      <!-- <div class="col-1"></div> -->
+    </div>
+  </div>
+
 
 </html>

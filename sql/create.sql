@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS avis (
     FOREIGN KEY (id_etudiant) REFERENCES etudiants(id_etudiant),
     id_voyage SMALLSERIAL,
     FOREIGN KEY (id_voyage) REFERENCES voyages(id_voyage),
-    note SMALLINT CHECK (note <= 5)
+    note FLOAT CHECK (note <= 5)
 );
 
 

@@ -5,7 +5,7 @@ raw_data = pd.read_csv('./donnees/voitures.csv', sep=';')
 #open a file to write the sql commands
 f = open('./sql/insert.sql', 'a')
 
-i = 0
+conducteur = 2
 
 #append the sql commands to the file
 for i in range(len(raw_data)):
@@ -16,8 +16,9 @@ for i in range(len(raw_data)):
             raw_data['couleur'][i]+"','"+
             raw_data['etat'][i]+"','"+
             raw_data['divers'][i]+"', "+
-            str(i)+
+            str(raw_data['id_etudiant'][i])+
             ");\n")
     i += 1
+
 #close the file
 f.close()

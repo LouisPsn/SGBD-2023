@@ -49,7 +49,8 @@
               echo "<th scope=\"row\">" . $row[0] . "</th>";
               echo "<td>" . $row[1] . "</td>";
               echo "
-              <form id='form-ajout-voiture' class='d-none' action='delete.php' method='post'>
+              <form id='form-suppresion-ville' class='d-none' action='delete.php' method='post'>
+                <input type='hidden' name='page' value='villes'>
                 <input type='hidden' name='table' value='villes'>
                 <input type='hidden' name='id_ville' value='$row[0]'>
                 <td> <button type='input' class='btn btn-danger'>X</button> </td>

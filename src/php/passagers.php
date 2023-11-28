@@ -42,6 +42,7 @@
               <th scope="col">Prénom</th>
               <th scope="col">Mail</th>
               <th scope="col">Date de Naissance</th>
+              <th scope="col">Suppression</th>
             </tr>
           </thead>
           <tbody>
@@ -57,6 +58,41 @@
               echo "<td>" . $row[2] . "</td>";
               echo "<td>" . $row[3] . "</td>";
               echo "<td>" . $row[5] . "</td>";
+              echo "
+              <form id='form-suppresion-etudiant' class='d-none' action='delete.php' method='post'>  
+                <input type='hidden' name='page' value='passagers'>
+                <input type='hidden' name='table' value='etudiants'>
+                <input type='hidden' name='id_etudiant' value='$row[0]'>
+                
+                <!-- Button trigger modal -->
+                <td>
+                <button type='button' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#passwordModal'>
+                  X
+                </button>
+                </td>
+
+                <!-- Modal -->
+                <div class='modal fade' id='passwordModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+                  <div class='modal-dialog'>
+                    <div class='modal-content'>
+                      <div class='modal-header'>
+                        <h5 class='modal-title' id='exampleModalLabel'>Mot de Passe</h5>
+                        <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+                      </div>
+                      <div class='modal-body'>
+                      <div class='input-group mb-3'>
+                        <input name='mot_de_passe' type='password' class='form-control' placeholder='Mot de Passe*'
+                          aria-label='Mot de Passe' aria-describedby='saisie-mot-de-passe'>
+                        </div>
+                      </div>
+                      <div class='modal-footer'>
+                        <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Fermer</button>
+                        <button type='submit' class='btn btn-danger'>Envoyer</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>";
               echo "</tr>";
             }
             ?>

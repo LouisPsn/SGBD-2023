@@ -67,7 +67,9 @@
               aria-label="Mot de Passe" aria-describedby="saisie-mot-de-passe">
           </div>
 
-          <button type="input" class="btn btn-outline-secondary">Envoyer</button>
+          <div class="input-group mb-3">
+            <button type="input" class="btn btn btn-dark">Envoyer</button>
+          </div>
         </form>
 
 
@@ -102,7 +104,9 @@
               aria-describedby="saisie-prenom">
           </div>
 
-          <button type="input" class="btn btn-outline-secondary">Envoyer</button>
+          <div class="input-group mb-3">
+            <button type="input" class="btn btn btn-dark">Envoyer</button>
+          </div>
         </form>
 
         <!-- form ajout ville -->
@@ -114,11 +118,13 @@
               aria-describedby="saisie-nom">
           </div>
 
-          <button type="input" class="btn btn-outline-secondary">Envoyer</button>
+          <div class="input-group mb-3">
+            <button type="input" class="btn btn btn-dark">Envoyer</button>
+          </div>
         </form>
 
-        <!-- form modification etudiants -->
-        <form id="form-modification-etudiant" action="php/modify.php" method="post">
+        <!-- form modification etudiant -->
+        <form id="form-modification-etudiant" class="d-none" action="php/modify.php" method="post">
           <input type='hidden' name='table' value='etudiants'>
 
           <div class="input-group mb-3">
@@ -143,7 +149,9 @@
               aria-label="Mot de Passe" aria-describedby="saisie-mot-de-passe">
           </div>
 
-          <button type="input" class="btn btn-outline-secondary">Envoyer</button>
+          <div class="input-group mb-3">
+            <button type="input" class="btn btn btn-dark">Envoyer</button>
+          </div>
         </form>
 
 
@@ -184,7 +192,9 @@
               aria-describedby="saisie-divers">
           </div>
 
-          <button type="input" class="btn btn-outline-secondary">Envoyer</button>
+          <div class="input-group mb-3">
+            <button type="input" class="btn btn btn-dark">Envoyer</button>
+          </div>
         </form>
       </div>
       <div class="col"></div>

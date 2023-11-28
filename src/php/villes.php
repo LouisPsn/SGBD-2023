@@ -39,18 +39,21 @@
             <tr>
               <th scope="col">ID Ville</th>
               <th scope="col">Nom</th>
+              <th scope="col">Suppression</th>
             </tr>
           </thead>
           <tbody>
             <?php
             while ($row = pg_fetch_array($result)) {
-              // $result_themes = pg_execute($db_handle, "themes", array($row["id_joueur"]));
-              // $themes = listeAttributs($result_themes);
-              // $result_mecaniques = pg_execute($db_handle, "mecaniques", array($row["id_joueur"]));
-              // $mecaniques = listeAttributs($result_mecaniques);
               echo "<tr>";
               echo "<th scope=\"row\">" . $row[0] . "</th>";
               echo "<td>" . $row[1] . "</td>";
+              echo "
+              <form id='form-ajout-voiture' class='d-none' action='delete.php' method='post'>
+                <input type='hidden' name='table' value='villes'>
+                <input type='hidden' name='id_ville' value='$row[0]'>
+                <td> <button type='input' class='btn btn-danger'>X</button> </td>
+              </form>";
               echo "</tr>";
             }
             ?>

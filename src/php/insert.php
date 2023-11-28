@@ -24,7 +24,7 @@
 
 
     if ($res) {
-        function_alert("POST data is successfully logged");
+        function_alert("Data are successfully added");
     }
     else {
         function_alert("User must have sent wrong inputs");

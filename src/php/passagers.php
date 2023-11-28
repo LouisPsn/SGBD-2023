@@ -48,10 +48,6 @@
           <tbody>
             <?php
             while ($row = pg_fetch_array($result)) {
-              // $result_themes = pg_execute($db_handle, "themes", array($row["id_joueur"]));
-              // $themes = listeAttributs($result_themes);
-              // $result_mecaniques = pg_execute($db_handle, "mecaniques", array($row["id_joueur"]));
-              // $mecaniques = listeAttributs($result_mecaniques);
               echo "<tr>";
               echo "<th scope=\"row\">" . $row[0] . "</th>";
               echo "<td>" . $row[1] . "</td>";

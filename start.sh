@@ -36,6 +36,7 @@ python insert_etudiants.py
 python insert_voitures.py
 python insert_villes.py
 python insert_voyages.py
+python insert_avis.py
 
 psql -f sql/insert.sql
 psql -f sql/select.sql

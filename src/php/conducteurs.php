@@ -42,18 +42,29 @@
               <th scope="col">Prénom</th>
               <th scope="col">Mail</th>
               <th scope="col">Date de Naissance</th>
-              <th scope="col"><center>Suppression</center></th>
+              <th scope="col">Avis</th>
+              <th scope="col">
+                <center>Suppression</center>
+              </th>
             </tr>
           </thead>
           <tbody>
             <?php
             while ($row = pg_fetch_array($result)) {
+              $query = "SELECT AVG(note) FROM avis
+              JOIN voyages ON voyages.id_voyage = avis.id_voyage
+              JOIN voitures ON voitures.id_voiture = voyages.id_voiture
+              WHERE voitures.id_etudiant = $row[0];";
+              $avis = pg_query($db_handle, $query);
               echo "<tr>";
               echo "<th scope=\"row\">" . $row[0] . "</th>";
               echo "<td>" . $row[1] . "</td>";
               echo "<td>" . $row[2] . "</td>";
               echo "<td>" . $row[3] . "</td>";
               echo "<td>" . $row[5] . "</td>";
+              $note = pg_fetch_row($avis);
+              echo "<td>" . number_format($note[0], 2) . "</td>";
+            
               echo "
               <form id='form-suppresion-etudiant' class='d-none' action='delete.php' method='post'>  
                 <input type='hidden' name='page' value='conducteurs'>

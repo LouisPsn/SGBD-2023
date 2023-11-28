@@ -35,6 +35,7 @@ psql -f sql/create.sql
 python insert_etudiants.py
 python insert_voitures.py
 python insert_villes.py
+python insert_voyages.py
 
 psql -f sql/insert.sql
 psql -f sql/select.sql

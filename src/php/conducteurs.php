@@ -42,7 +42,7 @@
               <th scope="col">Prénom</th>
               <th scope="col">Mail</th>
               <th scope="col">Date de Naissance</th>
-              <th scope="col">Suppression</th>
+              <th scope="col"><center>Suppression</center></th>
             </tr>
           </thead>
           <tbody>
@@ -62,9 +62,11 @@
                 
                 <!-- Button trigger modal -->
                 <td>
+                <center>
                 <button type='button' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#passwordModal'>
                   X
                 </button>
+                </center>
                 </td>
 
                 <!-- Modal -->

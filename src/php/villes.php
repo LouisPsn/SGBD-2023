@@ -39,7 +39,7 @@
             <tr>
               <th scope="col">ID Ville</th>
               <th scope="col">Nom</th>
-              <th scope="col">Suppression</th>
+              <th scope="col"><center>Suppression</center></th>
             </tr>
           </thead>
           <tbody>
@@ -53,7 +53,11 @@
                 <input type='hidden' name='page' value='villes'>
                 <input type='hidden' name='table' value='villes'>
                 <input type='hidden' name='id_ville' value='$row[0]'>
-                <td> <button type='input' class='btn btn-danger'>X</button> </td>
+                <td> 
+                <center>
+                <button type='input' class='btn btn-danger'>X</button>
+                </center>
+                </td>
               </form>";
               echo "</tr>";
             }

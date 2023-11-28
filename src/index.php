@@ -27,6 +27,8 @@
             <option value="ajout_etudiant" selected>Ajouter un étudiant</option>
             <option value="ajout_voiture">Ajouter une voiture</option>
             <option value="ajout_ville">Ajouter une ville</option>
+            <option value="modification_etudiant">Modifier un étudiant</option>
+            <option value="modification_voiture">Modifier une voiture</option>
           </select>
         </form>
       </div>
@@ -36,7 +38,8 @@
     <div class="row justify-content-center"> <!-- les div avec des colonnes sectionnent la page en lignes -->
       <div class="col"></div> <!-- les div avec des colonnes sectionnent la page en colonnes -->
       <div class="col-sm-3"> <!-- prend la place de 3 petites colonnes -->
-        <!-- form ajout joueur -->
+
+        <!-- form ajout etudiant -->
         <form id="form-ajout-etudiant" action="php/insert.php" method="post">
           <input type='hidden' name='table' value='etudiants'>
           <!-- un div = un conteneur d'objets html : servent juste à positionner les éléments -->
@@ -55,7 +58,11 @@
           </div>
 
           <div class="input-group mb-3">
-            <!-- champ de saisie d'email -->
+            <input name="date_de_naissance" type="date" class="form-control" placeholder="Date de naissance"
+              aria-label="Date de naissance" aria-describedby="saisie-date-de-naissance">
+          </div>
+
+          <div class="input-group mb-3">
             <input name="mot_de_passe" type="password" class="form-control" placeholder="Mot de Passe*"
               aria-label="Mot de Passe" aria-describedby="saisie-mot-de-passe">
           </div>
@@ -64,7 +71,7 @@
         </form>
 
 
-        <!-- form ajout jeu -->
+        <!-- form ajout voiture -->
         <form id="form-ajout-voiture" class="d-none" action="php/insert.php" method="post">
           <input type='hidden' name='table' value='voitures'>
           <div class="input-group mb-3">
@@ -98,45 +105,86 @@
           <button type="input" class="btn btn-outline-secondary">Envoyer</button>
         </form>
 
-        <!-- form ajout avis -->
+        <!-- form ajout ville -->
         <form id="form-ajout-ville" class="d-none" action="php/insert.php" method="post">
-          <input type='hidden' name='table' value='avis'>
+          <input type='hidden' name='table' value='villes'>
+
           <div class="input-group mb-3">
-            <input name="pseudo" type="text" class="form-control" placeholder="Pseudo*" aria-label="Pseudo"
-              aria-describedby="saisie-pseudo">
+            <input name="nom" type="text" class="form-control" placeholder="Nom*" aria-label="Nom"
+              aria-describedby="saisie-nom">
+          </div>
+
+          <button type="input" class="btn btn-outline-secondary">Envoyer</button>
+        </form>
+
+        <!-- form modification etudiants -->
+        <form id="form-modification-etudiant" action="php/modify.php" method="post">
+          <input type='hidden' name='table' value='etudiants'>
+
+          <div class="input-group mb-3">
+            <input name="nom" type="text" class="form-control" placeholder="Nom*" aria-label="Nom"
+              aria-describedby="saisie-nom">
+            <input name="prenom" type="text" class="form-control" placeholder="Prénom*" aria-label="Prénom"
+              aria-describedby="saisie-prenom">
           </div>
 
           <div class="input-group mb-3">
-            <input name="mail" type="text" class="form-control" placeholder="Addresse mail*" aria-label="Adresse mail"
+            <input name="mail" type="email" class="form-control" placeholder="Addresse mail*" aria-label="Adresse mail"
               aria-describedby="saisie-email">
           </div>
 
           <div class="input-group mb-3">
-            <input name="date" type="date" class="form-control" id="date">
+            <input name="date_de_naissance" type="date" class="form-control" placeholder="Date de naissance"
+              aria-label="Date de naissance" aria-describedby="saisie-date-de-naissance">
           </div>
 
           <div class="input-group mb-3">
-            <input name="nom_jeu" type="text" class="form-control" placeholder="Jeu*" aria-label="Jeu"
-              aria-describedby="saisie-jeu">
-          </div>
-
-          <div class="input-group mb-3">
-            <input name="note" type="text" class="form-control" placeholder="Note*" aria-label="note"
-              aria-describedby="saisie-note">
-            <input name="nb_joueurs" type="text" class="form-control" placeholder="Nb_joueurs*"
-              aria-label="Nombre de joueurs" aria-describedby="saisie-nb_joueurs">
-          </div>
-
-          <div class="input-group mb-3">
-            <input name="commentaire" type="text" class="form-control" placeholder="Commentaire*"
-              aria-label="Commentaire" aria-describedby="saisie-commentaire">
+            <input name="mot_de_passe" type="password" class="form-control" placeholder="Mot de Passe*"
+              aria-label="Mot de Passe" aria-describedby="saisie-mot-de-passe">
           </div>
 
           <button type="input" class="btn btn-outline-secondary">Envoyer</button>
         </form>
 
 
+        <!-- form modification voiture -->
+        <form id="form-modification-voiture" class="d-none" action="php/modify.php" method="post">
+          <input type='hidden' name='table' value='voitures'>
 
+          <div class="input-group mb-3">
+            <input name="nom" type="text" class="form-control" placeholder="Nom*" aria-label="Nom"
+              aria-describedby="saisie-nom">
+            <input name="prenom" type="text" class="form-control" placeholder="Prénom*" aria-label="Prénom"
+              aria-describedby="saisie-prenom">
+          </div>
+
+          <div class="input-group mb-3">
+            <input name="mot_de_passe" type="password" class="form-control" placeholder="Mot de Passe*"
+              aria-label="Mot de Passe" aria-describedby="saisie-mot-de-passe">
+          </div>
+
+          <div class="input-group mb-3">
+            <input name="marque" type="text" class="form-control" placeholder="Marque*" aria-label="Marque"
+              aria-describedby="saisie-marque">
+          </div>
+
+          <div class="input-group mb-3">
+            <input name="modele" type="text" class="form-control" placeholder="Modèle*" aria-label="Modele"
+              aria-describedby="saisie-modele">
+            <input name="type" type="text" class="form-control" placeholder="Type" aria-label="Type"
+              aria-describedby="saisie-type">
+            <input name="couleur" type="text" class="form-control" placeholder="Couleur" aria-label="Couleur"
+              aria-describedby="saisie-couleur">
+          </div>
+
+          <div class="input-group mb-3">
+            <input name="etat" type="text" class="form-control" placeholder="État" aria-label="Etat"
+              aria-describedby="saisie-etat">
+            <input name="divers" type="text" class="form-control" placeholder="Divers" aria-label="Divers"
+              aria-describedby="saisie-divers">
+          </div>
+
+          <button type="input" class="btn btn-outline-secondary">Envoyer</button>
         </form>
       </div>
       <div class="col"></div>

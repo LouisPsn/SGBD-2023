@@ -52,6 +52,15 @@
         </li>
         <li class="nav-item">
           <?php
+          if (basename($_SERVER['PHP_SELF']) == "villes.php") {
+            echo "<a class=\"nav-link active\" aria-current=\"page\" href=\"\">Villes</a>";
+          } else {
+            echo "<a class=\"nav-link\" href=\"" . $beg_href . "villes.php\">Villes</a>";
+          }
+          ?>
+        </li>
+        <li class="nav-item">
+          <?php
           if (basename($_SERVER['PHP_SELF']) == "trajets.php") {
             echo "<a class=\"nav-link active\" aria-current=\"page\" href=\"\">Trajet</a>";
           } else {

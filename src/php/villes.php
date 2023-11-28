@@ -15,7 +15,7 @@
     crossorigin="anonymous"></script>
   <center>
     <h1>
-      Véhicules
+      Villes
     </h1>
   </center>
   <?php
@@ -25,7 +25,7 @@
 
   $db_handle = pg_connect("host=" . $params['host'] . " port=" . $params['port'] . " password=" . $params['password']);
 
-  $sql = "SELECT * FROM voitures;";
+  $sql = "SELECT * FROM villes;";
   $result = pg_query($db_handle, $sql);
   ?>
 
@@ -34,34 +34,23 @@
 
       <!-- <div class="col-1"></div> -->
       <div class="col">
-        <table class="table table-hover table-responsive" id="table_vehicules">
+        <table class="table table-hover table-responsive" id="table_villes">
           <thead>
             <tr>
-              <th scope="col">ID Voiture</th>
-              <th scope="col">Marque</th>
-              <th scope="col">Modèle</th>
-              <th scope="col">Type</th>
-              <th scope="col">Couleur</th>
-              <th scope="col">État</th>
-              <th scope="col">Divers</th>
-              <th scope="col">Conducteur</th>
+              <th scope="col">ID Ville</th>
+              <th scope="col">Nom</th>
             </tr>
           </thead>
           <tbody>
             <?php
-
             while ($row = pg_fetch_array($result)) {
-              $conducteur = pg_query($db_handle, "SELECT nom, prenom FROM etudiants JOIN voitures ON etudiants.id_etudiant = voitures.id_etudiant WHERE id_voiture = $row[0]");
-              $conducteur = pg_fetch_row($conducteur);
+              // $result_themes = pg_execute($db_handle, "themes", array($row["id_joueur"]));
+              // $themes = listeAttributs($result_themes);
+              // $result_mecaniques = pg_execute($db_handle, "mecaniques", array($row["id_joueur"]));
+              // $mecaniques = listeAttributs($result_mecaniques);
               echo "<tr>";
               echo "<th scope=\"row\">" . $row[0] . "</th>";
               echo "<td>" . $row[1] . "</td>";
-              echo "<td>" . $row[2] . "</td>";
-              echo "<td>" . $row[3] . "</td>";
-              echo "<td>" . $row[4] . "</td>";
-              echo "<td>" . $row[5] . "</td>";
-              echo "<td>" . $row[6] . "</td>";
-              echo "<td>" . $conducteur[0] . $conducteur[1] . "</td>";
               echo "</tr>";
             }
             ?>
@@ -71,6 +60,5 @@
       <!-- <div class="col-1"></div> -->
     </div>
   </div>
-
 
 </html>

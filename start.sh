@@ -32,11 +32,11 @@ psql -f sql/create.sql
 
 # Ajouter les inserts python3.10 en commançant par le insert.py écrasant le fichier insert.sql
 
-python3.10 insert_etudiants.py
-python3.10 insert_voitures.py
-python3.10 insert_villes.py
-python3.10 insert_voyages.py
-python3.10 insert_reservations.py
+python insert_etudiants.py
+python insert_voitures.py
+python insert_villes.py
+python insert_voyages.py
+python insert_avis.py
 
 psql -f sql/insert.sql
 psql -f sql/select.sql

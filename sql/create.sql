@@ -44,14 +44,12 @@ CREATE TABLE IF NOT EXISTS etapes (
 );
 
 CREATE TABLE IF NOT EXISTS avis (
-    id_avis SMALLSERIAL PRIMARY KEY,
     id_etudiant SMALLSERIAL,
-    FOREIGN KEY (id_etudiant) REFERENCES etudiants(id_etudiant) ON DELETE CASCADE,
     id_voyage SMALLSERIAL,
+    FOREIGN KEY (id_etudiant) REFERENCES etudiants(id_etudiant) ON DELETE CASCADE,
     FOREIGN KEY (id_voyage) REFERENCES voyages(id_voyage) ON DELETE CASCADE,
     note SMALLINT CHECK (note <= 5 AND note > 0)
 );
-
 
 CREATE TABLE IF NOT EXISTS reservations (
     id_reservation SMALLSERIAL PRIMARY KEY,

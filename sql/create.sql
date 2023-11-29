@@ -1,3 +1,5 @@
+CREATE TYPE confirmation AS ENUM ('refuse', 'accepte', 'attente');
+
 CREATE TABLE IF NOT EXISTS etudiants (
     id_etudiant SMALLSERIAL PRIMARY KEY,
     nom CHAR(32) UNIQUE NOT NULL,
@@ -53,7 +55,7 @@ CREATE TABLE IF NOT EXISTS avis (
 
 CREATE TABLE IF NOT EXISTS reservations (
     id_reservation SMALLSERIAL PRIMARY KEY,
-    confirmation SMALLINT CHECK (confirmation <= 1),
+    confirmation_reservation confirmation,
     id_voyage SMALLSERIAL,
     FOREIGN KEY (id_voyage) REFERENCES voyages(id_voyage) ON DELETE CASCADE,
     date TIMESTAMP,

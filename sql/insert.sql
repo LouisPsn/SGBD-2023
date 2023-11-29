@@ -103,3 +103,6 @@ INSERT INTO voyages (nombre_places, id_voiture) VALUES (2,4);
 INSERT INTO voyages (nombre_places, id_voiture) VALUES (3,4);
 INSERT INTO voyages (nombre_places, id_voiture) VALUES (4,4);
 INSERT INTO voyages (nombre_places, id_voiture) VALUES (5,4);
+INSERT INTO reservations (confirmation_reservation, id_voyage, date, id_ville_depart, id_ville_arrive, id_etudiant) VALUES ('refuse', '1', '2023-09-10', '1', '1', '1');
+INSERT INTO reservations (confirmation_reservation, id_voyage, date, id_ville_depart, id_ville_arrive, id_etudiant) VALUES ('accepte', '2', '2023-11-27', '2', '2', '2');
+INSERT INTO reservations (confirmation_reservation, id_voyage, date, id_ville_depart, id_ville_arrive, id_etudiant) VALUES ('attente', '3', '2023-12-01', '3', '3', '3');

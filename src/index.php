@@ -80,6 +80,20 @@
         <!-- form ajout voiture -->
         <form id="form-ajout-voiture" class="d-none" action="php/insert.php" method="post">
           <input type='hidden' name='table' value='voitures'>
+
+          <div class="input-group mb-3">
+            <select name="id_etudiant" class="form-select" aria-label="Default select example">
+              <option selected>Sélectionner un étudiant</option>
+              <?php
+              $query = "SELECT id_etudiant, nom, prenom FROM etudiants ORDER BY nom;";
+              $result = pg_query($db_handle, $query);
+              while ($row = pg_fetch_array($result)) {
+                echo "<option value='$row[0]'>$row[1] $row[2]</option>";
+              }
+              ?>
+            </select>
+          </div>
+
           <div class="input-group mb-3">
             <input name="marque" type="text" class="form-control" placeholder="Marque*" aria-label="Marque"
               aria-describedby="saisie-marque">
@@ -102,10 +116,8 @@
           </div>
 
           <div class="input-group mb-3">
-            <input name="nom" type="text" class="form-control" placeholder="Nom*" aria-label="Nom"
-              aria-describedby="saisie-nom">
-            <input name="prenom" type="text" class="form-control" placeholder="Prenom*" aria-label="Prenom"
-              aria-describedby="saisie-prenom">
+            <input name="mot_de_passe" type="password" class="form-control" placeholder="Mot de Passe*"
+              aria-label="Mot de Passe" aria-describedby="saisie-mot-de-passe">
           </div>
 
           <div class="input-group mb-3">
@@ -132,15 +144,13 @@
           <input type='hidden' name='table' value='etudiants'>
 
           <div class="input-group mb-3">
-            <select class="form-select" aria-label="Default select example">
+            <select name="id_etudiant" class="form-select" aria-label="Default select example">
               <option selected>Sélectionner un étudiant</option>
               <?php
-              $query = "SELECT nom, prenom FROM etudiants ORDER BY nom;";
+              $query = "SELECT id_etudiant, nom, prenom FROM etudiants ORDER BY nom;";
               $result = pg_query($db_handle, $query);
-              $id_etudiant = 1;
               while ($row = pg_fetch_array($result)) {
-                echo "<option value='$id_etudiant'>$row[0] $row[1]</option>";
-                $id_etudiant = $id_etudiant + 1;
+                echo "<option value='$row[0]'>$row[1] $row[2]</option>";
               }
               ?>
             </select>
@@ -172,23 +182,16 @@
           <input type='hidden' name='table' value='voitures'>
 
           <div class="input-group mb-3">
-            <select class="form-select" aria-label="Default select example">
-              <option selected>Sélectionner un étudiant</option>
+            <select name="id_etudiant" class="form-select" aria-label="Default select example">
+              <option selected>Sélectionner un conducteur</option>
               <?php
-              $query = "SELECT nom, prenom FROM etudiants ORDER BY nom;";
+              $query = "SELECT etudiants.id_etudiant, nom, prenom FROM etudiants JOIN voitures ON etudiants.id_etudiant = voitures.id_etudiant ORDER BY nom;";
               $result = pg_query($db_handle, $query);
-              $id_etudiant = 1;
               while ($row = pg_fetch_array($result)) {
-                echo "<option value='$id_etudiant'>$row[0] $row[1]</option>";
-                $id_etudiant = $id_etudiant + 1;
+                echo "<option value='$row[0]'>$row[1] $row[2]</option>";
               }
               ?>
             </select>
-          </div>
-
-          <div class="input-group mb-3">
-            <input name="mot_de_passe" type="password" class="form-control" placeholder="Mot de Passe*"
-              aria-label="Mot de Passe" aria-describedby="saisie-mot-de-passe">
           </div>
 
           <div class="input-group mb-3">
@@ -210,6 +213,11 @@
               aria-describedby="saisie-etat">
             <input name="divers" type="text" class="form-control" placeholder="Divers" aria-label="Divers"
               aria-describedby="saisie-divers">
+          </div>
+
+          <div class="input-group mb-3">
+            <input name="mot_de_passe" type="password" class="form-control" placeholder="Mot de Passe*"
+              aria-label="Mot de Passe" aria-describedby="saisie-mot-de-passe">
           </div>
 
           <div class="input-group mb-3">

@@ -34,15 +34,16 @@
 
       <!-- <div class="col-1"></div> -->
       <div class="col">
-        <table class="table table-hover table-responsive" id="table_conducteurs">
+        <table id="table" data-toggle="table" data-sortable="true" class="table table-hover table-responsive"
+          id="sortTable">
           <thead>
             <tr>
-              <th scope="col">ID Étudiant</th>
-              <th scope="col">Nom</th>
-              <th scope="col">Prénom</th>
-              <th scope="col">Mail</th>
-              <th scope="col">Date de Naissance</th>
-              <th scope="col">Avis</th>
+              <th data-sortable="true" scope="col">ID Étudiant</button></th>
+              <th data-sortable="true" scope="col">Nom</th>
+              <th data-sortable="true" scope="col">Prénom</th>
+              <th data-sortable="true" scope="col">Mail</th>
+              <th data-sortable="true" scope="col">Date de Naissance</th>
+              <th data-sortable="true" scope="col">Avis</th>
               <th scope="col">
                 <center>Suppression</center>
               </th>
@@ -64,7 +65,7 @@
               echo "<td>" . $row[5] . "</td>";
               $note = pg_fetch_row($avis);
               echo "<td>" . number_format($note[0], 2) . "</td>";
-            
+
               echo "
               <form id='form-suppresion-etudiant' class='d-none' action='delete.php' method='post'>  
                 <input type='hidden' name='page' value='conducteurs'>

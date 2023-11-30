@@ -9,12 +9,17 @@
         $query = "INSERT INTO etudiants (nom, prenom, mail, mot_de_passe, date_de_naissance) VALUES ('$_POST[nom]', '$_POST[prenom]', '$_POST[mail]', '$_POST[mot_de_passe]', '$date');";
     }
     elseif ($table === "voitures") {
-        $query = "INSERT INTO voitures (marque, modele, typ, couleur, etat, divers, id_etudiant) VALUES ('$_POST[marque]', '$_POST[modele]', '$_POST[typ]', '$_POST[couleur]', '$_POST[etat]', '$_POST[divers]', (SELECT id_etudiant FROM etudiants WHERE nom = '$_POST[nom]' AND prenom = '$_POST[prenom]'));";
+        $query = "SELECT COUNT(*) FROM etudiants WHERE id_etudiant = $_POST[id_etudiant] AND mot_de_passe = '$_POST[mot_de_passe]';";
+        $result = pg_query($dbconn, $query);
+        if ($result === 0) {
+            function_alert("Mauvais mot de passe");
+        }
+        $query = "INSERT INTO voitures (marque, modele, typ, couleur, etat, divers, id_etudiant) VALUES ('$_POST[marque]', '$_POST[modele]', '$_POST[typ]', '$_POST[couleur]', '$_POST[etat]', '$_POST[divers]', $_POST[id_etudiant]);";
     }
     elseif ($table === "villes") {
         $query = "INSERT INTO villes (nom) VALUES ('$_POST[nom]');";
     }
-    
+
     $res = pg_query($dbconn, $query);
 
     function function_alert($msg) {
@@ -24,9 +29,9 @@
 
 
     if ($res) {
-        function_alert("Data are successfully added");
+        function_alert("Les données ont été ajoutées avec succès");
     }
     else {
-        function_alert("User must have sent wrong inputs");
+        function_alert("Vous avez dû rentrer de mauvaises informations");
     }
 ?>

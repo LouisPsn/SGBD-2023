@@ -13,6 +13,11 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
     crossorigin="anonymous"></script>
+
+  <script> src = "https://code.jquery.com/jquery-3.7.0.js"</script>
+  <script> src = "https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"</script>
+  <script> src = "https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css"</script>
+
   <center>
     <h1>
       Villes
@@ -31,22 +36,23 @@
 
   <div class="container">
     <div class="row justify-content-center">
-
-      <!-- <div class="col-1"></div> -->
       <div class="col">
-        <table class="table table-hover table-responsive" id="table_villes">
+        <!-- class="table table-hover table-responsive" -->
+        <table id="example" class="display  ">
           <thead>
             <tr>
               <th scope="col">ID Ville</th>
               <th scope="col">Nom</th>
-              <th scope="col"><center>Suppression</center></th>
+              <th scope="col">
+                <center>Suppression</center>
+              </th>
             </tr>
           </thead>
           <tbody>
             <?php
             while ($row = pg_fetch_array($result)) {
               echo "<tr>";
-              echo "<th scope=\"row\">" . $row[0] . "</th>";
+              echo "<th scope='row'>" . $row[0] . "</th>";
               echo "<td>" . $row[1] . "</td>";
               echo "
               <form id='form-suppresion-ville' class='d-none' action='delete.php' method='post'>
@@ -62,11 +68,15 @@
               echo "</tr>";
             }
             ?>
+
           </tbody>
         </table>
       </div>
       <!-- <div class="col-1"></div> -->
     </div>
   </div>
+
+  <script src="../js/index.js"></script>
+</body>
 
 </html>

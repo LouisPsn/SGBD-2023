@@ -17,6 +17,10 @@
   <h1 class="text-lg-center">Accueil</h1>
   <?php
   include "php/menu.php";
+
+  $params = parse_ini_file('../database.ini');
+  $db_handle = pg_connect("host=" . $params['host'] . " port=" . $params['port'] . " password=" . $params['password']);
+
   ?>
 
   <div class="container-fluid border">
@@ -128,10 +132,18 @@
           <input type='hidden' name='table' value='etudiants'>
 
           <div class="input-group mb-3">
-            <input name="nom" type="text" class="form-control" placeholder="Nom*" aria-label="Nom"
-              aria-describedby="saisie-nom">
-            <input name="prenom" type="text" class="form-control" placeholder="Prénom*" aria-label="Prénom"
-              aria-describedby="saisie-prenom">
+            <select class="form-select" aria-label="Default select example">
+              <option selected>Sélectionner un étudiant</option>
+              <?php
+              $query = "SELECT nom, prenom FROM etudiants ORDER BY nom;";
+              $result = pg_query($db_handle, $query);
+              $id_etudiant = 1;
+              while ($row = pg_fetch_array($result)) {
+                echo "<option value='$id_etudiant'>$row[0] $row[1]</option>";
+                $id_etudiant = $id_etudiant + 1;
+              }
+              ?>
+            </select>
           </div>
 
           <div class="input-group mb-3">
@@ -160,10 +172,18 @@
           <input type='hidden' name='table' value='voitures'>
 
           <div class="input-group mb-3">
-            <input name="nom" type="text" class="form-control" placeholder="Nom*" aria-label="Nom"
-              aria-describedby="saisie-nom">
-            <input name="prenom" type="text" class="form-control" placeholder="Prénom*" aria-label="Prénom"
-              aria-describedby="saisie-prenom">
+            <select class="form-select" aria-label="Default select example">
+              <option selected>Sélectionner un étudiant</option>
+              <?php
+              $query = "SELECT nom, prenom FROM etudiants ORDER BY nom;";
+              $result = pg_query($db_handle, $query);
+              $id_etudiant = 1;
+              while ($row = pg_fetch_array($result)) {
+                echo "<option value='$id_etudiant'>$row[0] $row[1]</option>";
+                $id_etudiant = $id_etudiant + 1;
+              }
+              ?>
+            </select>
           </div>
 
           <div class="input-group mb-3">

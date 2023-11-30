@@ -24,15 +24,24 @@
   $params = parse_ini_file('../../database.ini');
 
   $db_handle = pg_connect("host=" . $params['host'] . " port=" . $params['port'] . " password=" . $params['password']);
-
-    $city = "SELECT v.nom, COUNT(e.*) as nb_tarj FROM villes v, etapes e WHERE e.id_ville = v.id_ville ORDER BY nb_traj DESC; ";
-    $cond = "SELECT e.nom, e.pernom, a.note FROM etudiants e, avis a, voitures v WHERE e.id_etudiant = v.id_etudiant e.id_etudiant = a.id_etudiant ORDER BY a.note DESC;";
-    $dist = "SELECT AVG(v.distance) FROM voyages v,etapes e ORDER BY e.date ;";
-    $sql = "SELECT AVG(COUNT(*)) FROM etudiants e, reservations r, voyages v WHERE e.id_etudiant = r.id_etudiants, r.id_voyages = v.id_voyage AND r.confirmation = 1; ";
+    // $city="SELECT * FROM villes;";
+    $city = "SELECT v.nom, COUNT(e.*) as nb FROM villes v, etapes e WHERE e.id_ville = v.id_ville GROUP BY v.nom ORDER BY nb DESC; ";
+    $cond = "SELECT e.nom, e.pernom, a.note FROM etudiants e, avis a, voitures v WHERE e.id_etudiant = v.id_etudiant AND e.id_etudiant = a.id_etudiant ORDER BY a.note DESC;";
+    $dist = "SELECT AVG(v.distance) FROM voyages v,etapes e GROUP BY e.date ;";
+    $sql = "SELECT AVG(COUNT(*)) FROM etudiants e, reservations r, voyages v WHERE e.id_etudiant = r.id_etudiant, r.id_voyage = v.id_voyage AND r.confirmation_reservation = 'accepte'; ";
 //   $sql = "SELECT * FROM etudiants LEFT OUTER JOIN voitures ON etudiants.id_etudiant = voitures.id_etudiant WHERE id_voiture is null;";
   $result = pg_query($db_handle, $sql);
   ?>
-
+<?php 
+            while ($row = pg_fetch_array($result)) {
+                echo "<tr>";
+                echo "<th scope=\"row\">" . $row[0] . "</th>";
+                echo "<td>" . $row[1] . "</td>";
+                echo "<td>" . $row[2] . "</td>";
+                echo "<td>" . $row[3] . "</td>";
+                echo "<td>" . $row[5] . "</td>";
+            }
+    ?>
   
-
+</body>
 </html>

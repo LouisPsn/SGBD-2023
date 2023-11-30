@@ -54,10 +54,11 @@
             <?php
 
             while ($row = pg_fetch_array($result)) {
-              $conducteur = pg_query($db_handle, "SELECT nom, prenom FROM etudiants JOIN voitures ON etudiants.id_etudiant = voitures.id_etudiant WHERE id_voiture = $row[0]");
+              $conducteur = pg_query($db_handle, "SELECT etudiants.id_etudiant, nom, prenom FROM etudiants JOIN voitures ON etudiants.id_etudiant = voitures.id_etudiant WHERE id_voiture = $row[0];");
               $conducteur = pg_fetch_row($conducteur);
-              $nom = $conducteur[0];
-              $prenom = $conducteur[1];
+              $id_etudiant = $conducteur[0];
+              $nom = $conducteur[1];
+              $prenom = $conducteur[2];
               echo "<tr>";
               echo "<th scope=\"row\">" . $row[0] . "</th>";
               echo "<td>" . $row[1] . "</td>";
@@ -71,8 +72,7 @@
               <form id='form-suppresion-voiture' class='d-none' action='delete.php' method='post'>  
                 <input type='hidden' name='page' value='vehicules'>
                 <input type='hidden' name='table' value='voitures'>
-                <input type='hidden' name='nom' value='$nom'>
-                <input type='hidden' name='prenom' value='$prenom'>
+                <input type='hidden' name='id_etudiant' value='$id_etudiant'>
                 <input type='hidden' name='id_voiture' value='$row[0]'>
                 
                 <!-- Button trigger modal -->

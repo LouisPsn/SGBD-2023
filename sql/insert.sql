@@ -9,7 +9,7 @@ INSERT INTO voitures (marque, modele, typ, couleur, etat, divers, id_etudiant) V
 INSERT INTO voitures (marque, modele, typ, couleur, etat, divers, id_etudiant) VALUES ('Renault','R5','Collection','Blanc','Dans son jus','Penser à fermer la vitre avec les mains', 5);
 INSERT INTO voitures (marque, modele, typ, couleur, etat, divers, id_etudiant) VALUES ('Renault','Clio Campus 2','Tout Terrain','Bleu Kangoo','Embrayage fatigué','Ambiance', 6);
 INSERT INTO villes (nom) VALUES ('Paris');
-INSERT INTO villes (nom) VALUES ('Marseille');
+INSERT INTO villes (nom) VALUES ('Marseille Bébé');
 INSERT INTO villes (nom) VALUES ('Lyon');
 INSERT INTO villes (nom) VALUES ('Toulouse');
 INSERT INTO villes (nom) VALUES ('Nice');

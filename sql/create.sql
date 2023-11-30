@@ -1,5 +1,6 @@
 CREATE TYPE confirmation AS ENUM ('refuse', 'accepte', 'attente');
 
+
 CREATE TABLE IF NOT EXISTS etudiants (
     id_etudiant SMALLSERIAL PRIMARY KEY,
     nom CHAR(32) UNIQUE NOT NULL,

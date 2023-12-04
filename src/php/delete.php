@@ -19,7 +19,7 @@ if ($table === "etudiants") {
     $res = pg_query($dbconn, $query);
     $conducteur = pg_fetch_row($res);
     if ($conducteur > 0) {
-        $query = "DELETE FROM voitures WHERE id_voiture = '$_POST[id_voiture]';"; // and mot_de_passe = '$_POST[mot_de_passe]';"
+        $query = "DELETE FROM voitures WHERE id_voiture = '$_POST[id_voiture]';";
     } else {
         function_alert("Mauvais mot de passe", $page);
     }

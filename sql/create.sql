@@ -2,9 +2,9 @@ CREATE TYPE confirmation AS ENUM ('refuse', 'accepte', 'attente');
 
 CREATE TABLE IF NOT EXISTS etudiants (
     id_etudiant SMALLSERIAL PRIMARY KEY,
-    nom CHAR(32) UNIQUE NOT NULL,
-    prenom CHAR(32) UNIQUE NOT NULL,
-    mail CHAR(64) NOT NULL,
+    nom CHAR(32) NOT NULL,
+    prenom CHAR(32) NOT NULL,
+    mail CHAR(64) UNIQUE NOT NULL,
     mot_de_passe CHAR(64) NOT NULL,
     date_de_naissance TIMESTAMP without time zone NOT NULL
 );
@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS etudiants (
 
 CREATE TABLE IF NOT EXISTS villes (
     id_ville SMALLSERIAL PRIMARY KEY,
-    nom CHAR(32)
+    nom CHAR(32) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS voitures (
@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS voitures (
     couleur CHAR(32),
     etat CHAR(32),
     divers CHAR(64),
-    id_etudiant SMALLSERIAL,
+    id_etudiant SMALLSERIAL UNIQUE NOT NULL,
     FOREIGN KEY (id_etudiant) REFERENCES etudiants(id_etudiant) ON DELETE CASCADE
 );
 

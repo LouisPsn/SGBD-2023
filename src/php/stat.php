@@ -30,7 +30,7 @@
     $dist = "SELECT AVG(v.distance) FROM voyages v,etapes e GROUP BY e.date ;";
     $sql = "SELECT AVG(COUNT(*)) FROM etudiants e, reservations r, voyages v WHERE e.id_etudiant = r.id_etudiant, r.id_voyage = v.id_voyage AND r.confirmation_reservation = 'accepte'; ";
 //   $sql = "SELECT * FROM etudiants LEFT OUTER JOIN voitures ON etudiants.id_etudiant = voitures.id_etudiant WHERE id_voiture is null;";
-  $result = pg_query($db_handle, $sql);
+  $result = pg_query($db_handle, $city);
   ?>
 <?php 
             while ($row = pg_fetch_array($result)) {

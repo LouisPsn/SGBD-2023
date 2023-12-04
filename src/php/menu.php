@@ -68,6 +68,15 @@
           }
           ?>
         </li>
+        <li class="nav-item">
+          <?php
+          if (basename($_SERVER['PHP_SELF']) == "stat.php") {
+            echo "<a class=\"nav-link active\" aria-current=\"page\" href=\"\">stat</a>";
+          } else {
+            echo "<a class=\"nav-link\" href=\"" . $beg_href . "stat.php\">stat</a>";
+          }
+          ?>
+        </li>
       </ul>
     </div>
   </div>

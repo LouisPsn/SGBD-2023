@@ -62,18 +62,18 @@
         <li class="nav-item">
           <?php
           if (basename($_SERVER['PHP_SELF']) == "trajets.php") {
-            echo "<a class=\"nav-link active\" aria-current=\"page\" href=\"\">Trajet</a>";
+            echo "<a class=\"nav-link active\" aria-current=\"page\" href=\"\">Trajets</a>";
           } else {
-            echo "<a class=\"nav-link\" href=\"" . $beg_href . "trajets.php\">Trajet</a>";
+            echo "<a class=\"nav-link\" href=\"" . $beg_href . "trajets.php\">Trajets</a>";
           }
           ?>
         </li>
         <li class="nav-item">
           <?php
           if (basename($_SERVER['PHP_SELF']) == "stat.php") {
-            echo "<a class=\"nav-link active\" aria-current=\"page\" href=\"\">stat</a>";
+            echo "<a class=\"nav-link active\" aria-current=\"page\" href=\"\">Statistiques</a>";
           } else {
-            echo "<a class=\"nav-link\" href=\"" . $beg_href . "stat.php\">stat</a>";
+            echo "<a class=\"nav-link\" href=\"" . $beg_href . "stat.php\">Statistiques</a>";
           }
           ?>
         </li>

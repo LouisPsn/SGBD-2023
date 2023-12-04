@@ -194,8 +194,6 @@
             </select>
           </div>
 
-          
-
           <div class="input-group mb-3">
             <input name="marque" type="text" class="form-control" placeholder="Marque*" aria-label="Marque"
               aria-describedby="saisie-marque">

@@ -10,7 +10,7 @@
         if ($result === 0) {
             function_alert("Mauvais mot de passe");
         }
-        $query = "UPDATE etudiants SET mail = '$_POST[mail]', date_de_naissance = '$_POST[date_de_naissance]' WHERE id_etudiant = $_POST[id_etudiant] and mot_de_passe = '$_POST[mot_de_passe]';";
+        $query = "UPDATE etudiants SET mail = '$_POST[mail]', date_de_naissance = '$_POST[date_de_naissance]' WHERE id_etudiant = '$_POST[id_etudiant]' and mot_de_passe = '$_POST[mot_de_passe]';";
     }
     elseif ($table === "voitures") {
         $query = "SELECT COUNT(*) FROM etudiants WHERE id_etudiant = $_POST[id_etudiant] AND mot_de_passe = '$_POST[mot_de_passe]';";

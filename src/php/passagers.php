@@ -13,12 +13,6 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
     crossorigin="anonymous"></script>
-
-  <link href="https://cdn.datatables.net/v/bs5/jq-3.7.0/dt-1.13.8/datatables.css" rel="stylesheet">
-  <script src="../js/datatables.js"></script>
-
-  <script src="../js/index.js"></script>
-
   <center>
     <h1>
       Passagers
@@ -40,7 +34,7 @@
 
       <!-- <div class="col-1"></div> -->
       <div class="col">
-        <table id="example" class="display">
+        <table class="table table-hover table-responsive" id="table_joueurs">
           <thead>
             <tr>
               <th scope="col">ID Étudiant</th>
@@ -48,9 +42,7 @@
               <th scope="col">Prénom</th>
               <th scope="col">Mail</th>
               <th scope="col">Date de Naissance</th>
-              <th scope="col">
-                <center>Suppression</center>
-              </th>
+              <th scope="col"><center>Suppression</center></th>
             </tr>
           </thead>
           <tbody>

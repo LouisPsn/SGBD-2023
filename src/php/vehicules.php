@@ -13,6 +13,12 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
     crossorigin="anonymous"></script>
+
+  <link href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+  <script src="../js/datatables.js"></script>
+
+  <script src="../js/index.js"></script>
+
   <center>
     <h1>
       Véhicules
@@ -34,7 +40,7 @@
 
       <!-- <div class="col-1"></div> -->
       <div class="col">
-        <table class="table table-hover table-responsive" id="table_vehicules">
+        <table id="example" class="display" style="width:100%">
           <thead>
             <tr>
               <th scope="col">ID Voiture</th>

@@ -14,9 +14,10 @@
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
     crossorigin="anonymous"></script>
 
-  <script> src = "https://code.jquery.com/jquery-3.7.0.js"</script>
-  <script> src = "https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"</script>
-  <script> src = "https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css"</script>
+  <!-- <link href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css"> -->
+  <script src="../js/datatables.js"></script>
+
+  <script src="../js/index.js"></script>
 
   <center>
     <h1>
@@ -38,7 +39,7 @@
     <div class="row justify-content-center">
       <div class="col">
         <!-- class="table table-hover table-responsive" -->
-        <table id="example" class="display  ">
+        <table id="example" class="display" style="width:100%">
           <thead>
             <tr>
               <th scope="col">ID Ville</th>
@@ -75,8 +76,6 @@
       <!-- <div class="col-1"></div> -->
     </div>
   </div>
-
-  <script src="../js/index.js"></script>
 </body>
 
 </html>

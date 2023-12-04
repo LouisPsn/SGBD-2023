@@ -14,6 +14,8 @@
         if ($result === 0) {
             function_alert("Mauvais mot de passe");
         }
+        $_POST[divers] = <?php echo echo addcslashes($_POST[divers], "'")?>;
+        function_alert($_POST[divers]);
         $query = "INSERT INTO voitures (marque, modele, typ, couleur, etat, divers, id_etudiant) VALUES ('$_POST[marque]', '$_POST[modele]', '$_POST[typ]', '$_POST[couleur]', '$_POST[etat]', '$_POST[divers]', $_POST[id_etudiant]);";
     }
     elseif ($table === "villes") {

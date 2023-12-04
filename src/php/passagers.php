@@ -14,9 +14,9 @@
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
     crossorigin="anonymous"></script>
 
-  <link href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
-  <script src="../js/datatables.js"></script>
+  <link href="https://cdn.datatables.net/v/bs5/jq-3.7.0/dt-1.13.8/datatables.css" rel="stylesheet">
 
+  <script src="../js/datatables.js"></script>
   <script src="../js/index.js"></script>
 
   <center>
@@ -31,7 +31,7 @@
 
   $db_handle = pg_connect("host=" . $params['host'] . " port=" . $params['port'] . " password=" . $params['password']);
 
-  $sql = "SELECT * FROM etudiants LEFT OUTER JOIN voitures ON etudiants.id_etudiant = voitures.id_etudiant WHERE id_voiture is null;";
+  $sql = "SELECT * FROM etudiants LEFT OUTER JOIN voitures ON etudiants.id_etudiant = voitures.id_etudiant WHERE id_voiture is null ORDER BY nom;";
   $result = pg_query($db_handle, $sql);
   ?>
 

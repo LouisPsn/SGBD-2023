@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS voyages (
     id_voyage SMALLSERIAL PRIMARY KEY,
     nombre_places SMALLINT NOT NULL,
     id_voiture SMALLSERIAL NOT NULL,
-    distance SMALLINT NOT NULL,
+    distance INT NOT NULL,
     FOREIGN key (id_voiture) REFERENCES voitures(id_voiture) ON DELETE CASCADE,
     etape_depart_voyage SMALLSERIAL NOT NULL,
     FOREIGN KEY (etape_depart_voyage) REFERENCES etapes(id_etape) ON DELETE CASCADE,

@@ -85,7 +85,7 @@
             <select name="id_etudiant" class="form-select" aria-label="Default select example">
               <option selected>Sélectionner un étudiant</option>
               <?php
-              $query = "SELECT id_etudiant, nom, prenom FROM etudiants ORDER BY nom;";
+              $query = "SELECT * FROM etudiants LEFT OUTER JOIN voitures ON etudiants.id_etudiant = voitures.id_etudiant WHERE id_voiture is null ORDER BY nom;";
               $result = pg_query($db_handle, $query);
               while ($row = pg_fetch_array($result)) {
                 echo "<option value='$row[0]'>$row[1] $row[2]</option>";

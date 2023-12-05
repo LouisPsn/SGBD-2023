@@ -47,6 +47,7 @@
               <th data-sortable="true" scope="col">Nom</th>
               <th data-sortable="true" scope="col">Prénom</th>
               <th data-sortable="true" scope="col">Mail</th>
+              <th data-sortable="true" scope="col">Mot de passe</th>
               <th data-sortable="true" scope="col">Date de Naissance</th>
               <th data-sortable="true" scope="col">Avis</th>
               <th scope="col">
@@ -67,6 +68,7 @@
               echo "<td>" . $row[1] . "</td>";
               echo "<td>" . $row[2] . "</td>";
               echo "<td>" . $row[3] . "</td>";
+              echo "<td>" . $row[4] . "</td>";
               echo "<td>" . $row[5] . "</td>";
               $note = pg_fetch_row($avis);
               echo "<td>" . number_format($note[0], 2) . "</td>";

@@ -33,6 +33,7 @@
             <option value="ajout_ville">Ajouter une ville</option>
             <option value="modification_etudiant">Modifier un étudiant</option>
             <option value="modification_voiture">Modifier une voiture</option>
+            <option value="modification_mot_de_passe">Modifier un mot de passe</option>
           </select>
         </form>
       </div>
@@ -224,6 +225,43 @@
             <button type="input" class="btn btn btn-dark">Envoyer</button>
           </div>
         </form>
+
+
+        <!-- form modification mot de passe -->
+        <form id="form-modification-mot-de-passe" class="d-none" action="php/modify.php" method="post">
+          <input type='hidden' name='table' value='mot_de_passe'>
+
+          <div class="input-group mb-3">
+            <select name="id_etudiant" class="form-select" aria-label="Default select example">
+              <option selected>Sélectionner un étudiant</option>
+              <?php
+              $query = "SELECT id_etudiant, nom, prenom FROM etudiants ORDER BY nom;";
+              $result = pg_query($db_handle, $query);
+              while ($row = pg_fetch_array($result)) {
+                echo "<option value='$row[0]'>$row[1] $row[2]</option>";
+              }
+              ?>
+            </select>
+          </div>
+
+          <div class="input-group mb-3">
+            <input name="ancien_mot_de_passe" type="password" class="form-control" placeholder="Ancien mot de passe*" aria-label="Adresse mail">
+          </div>
+
+          <div class="input-group mb-3">
+            <input name="nouveau_mot_de_passe_1" type="password" class="form-control" placeholder="Nouveau mot de passe*" aria-label="Nouveau mot de passe">
+          </div>
+
+          <div class="input-group mb-3">
+            <input name="nouveau_mot_de_passe_2" type="password" class="form-control" placeholder="Répéter nouveau mot de passe*" aria-label="Répéter nouveau mot de passe">
+          </div>
+
+          <div class="input-group mb-3">
+            <button type="input" class="btn btn btn-dark">Envoyer</button>
+          </div>
+        </form>
+
+
       </div>
       <div class="col"></div>
     </div>

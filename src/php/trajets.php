@@ -14,9 +14,11 @@
   integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
   crossorigin="anonymous"></script>
   
+  <link href="../style/trajets.css" rel="stylesheet">
   <link href="https://cdn.datatables.net/v/bs5/jq-3.7.0/dt-1.13.8/datatables.css" rel="stylesheet">
   <script src="../js/datatables.js"></script>
   <script src="../js/index.js"></script>
+  <script src="../js/trajets.js" defer></script>
 
   <center>
     <h1>
@@ -59,13 +61,14 @@ JOIN (SELECT id_etape, etapes.date, nom FROM etapes JOIN villes ON villes.id_vil
       <!-- <div class="col-1"></div> -->
       <div class="col">
         <table class="display table table-striped" id="table_trajets" style="width:100%">
-          <thead>
+          <thead id=entete_trajets>
             <tr>
-              <th scope="col">ID Voyage</th>
+              <th scope="col">Voyage</th>
               <th scope="col">Conducteur</th>
               <th scope="col">Voiture</th>
               <th scope="col">Lieu et Date de Départ</th>
               <th scope="col">Lieu et Date d'Arrivée</th>
+              <th scope="col"> </th>
               <!-- <th scope="col">Avis</th> -->
               <th scope="col">
                 <center>Suppression</center>
@@ -97,17 +100,17 @@ function extract_date($date){
               // echo "</tr>";
               // echo "<tr>";
                 // echo "<div class='voyage-complet'>";
-              echo "<tr>";
+              echo "<tr class='ligne_voyage' id='voyage".$row_voyage[0]."'>"; 
               
                 echo "<td>".$row_voyage[0]."</td>";
                 echo "<td>".$row_voyage[1]."</td>";
                 echo "<td>".$row_voyage[2].$row_voyage[3]."</td>";
                 echo "<td>".$row_voyage[4].extract_date($row_voyage[5])."</td>";
                 echo "<td>".$row_voyage[6].extract_date($row_voyage[7])."</td>";
-
+                echo "<td> <button class='bouton_resa' id='resa_voyage".$row_voyage[0]."'>Hide Resa</button> </td>";
                 
                               echo "
-                              <form id='form-suppresion-trajet' class='d-none' action='delete.php' method='post'>  
+                              <form id='form-suppresion-voyage".$row_voyage[0]."' class='d-none' action='delete.php' method='post'>  
                                 <input type='hidden' name='page' value='trajets'>
                                 <input type='hidden' name='table' value='voyages'>
                                 <input type='hidden' name='id_etudiant' value='$row[0]'>
@@ -152,7 +155,7 @@ function extract_date($date){
 */
               // echo "<tr> <td> Après </td> </tr>";
 
-          echo "<tr class='reservation-header'><td> </td><td>Reservation</td><td>Passager</td><td>Etape départ</td><td>Etape arrivée</td><td>Status</td><td>Suppression</td></tr>";
+          echo "<tr class='reservation-header resa resa_voyage".$row_voyage[0]."'><td> </td><td>Reservation</td><td>Passager</td><td>Etape départ</td><td>Etape arrivée</td><td>Status</td><td>Suppression</td></tr>";
 
                 
               $query_resa_du_voyage = "SELECT id_reservation, prenom, etape1.nom, etape2.nom, confirmation_reservation FROM (SELECT id_reservation , prenom, etape_depart_resa, etape_arrive_resa, confirmation_reservation FROM reservations
@@ -168,7 +171,7 @@ function extract_date($date){
               while ($row_resa = pg_fetch_array($res_resa_du_voyage)){
 
               //   // function_alert($row[1]);
-                echo "<tr><td> </td>";
+                echo "<tr class ='resa resa_voyage".$row_voyage[0]."'><td> </td>";
                 
               //   // echo "<th scope=\"row\">" . $row_resa[0] . "</th>";
               //   // echo "<td>" . $row_resa[10] . "</td>";
@@ -180,6 +183,47 @@ function extract_date($date){
                   # code...
                   echo "<td>" . $row_resa[$i] . "</td>";
                 }
+
+
+                echo "
+                <form id='form-suppresion-resa".$row_resa[0]."' class='d-none' action='delete.php' method='post'>  
+                  <input type='hidden' name='page' value='trajets'>
+                  <input type='hidden' name='table' value='reservations'>
+                  <input type='hidden' name='id_etudiant' value='$row[0]'>
+                
+                  <!-- Button trigger modal -->
+                  <td>
+                  <center>
+                  <button type='button' class=' btn_smaller' data-bs-toggle='modal' data-bs-target='#passwordModal'>
+                    <span>X</span>
+                  </button>
+                  </center>
+                  </td>
+                
+                  <!-- Modal -->
+                  <div class='modal fade' id='passwordModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+                    <div class='modal-dialog'>
+                      <div class='modal-content'>
+                        <div class='modal-header'>
+                          <h5 class='modal-title' id='exampleModalLabel'>Mot de Passe</h5>
+                          <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+                        </div>
+                        <div class='modal-body'>
+                        <div class='input-group mb-3'>
+                          <input name='mot_de_passe' type='password' class='form-control' placeholder='Mot de Passe*'
+                            aria-label='Mot de Passe' aria-describedby='saisie-mot-de-passe'>
+                          </div>
+                        </div>
+                        <div class='modal-footer'>
+                          <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Fermer</button>
+                          <button type='submit' class='btn btn-danger'>Envoyer</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>";
+  
+
                 echo "</tr>";
               }
               // echo "</div>";

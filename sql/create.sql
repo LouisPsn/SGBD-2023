@@ -60,6 +60,7 @@ CREATE TABLE IF NOT EXISTS reservations (
     id_voyage SMALLSERIAL NOT NULL,
     FOREIGN KEY (id_voyage) REFERENCES voyages(id_voyage) ON DELETE CASCADE,
     date TIMESTAMP NOT NULL,
+    proposition_prix INT NOT NULL,
     etape_depart_resa SMALLSERIAL NOT NULL,
     FOREIGN KEY (etape_depart_resa) REFERENCES etapes(id_etape) ON DELETE CASCADE,
     etape_arrive_resa SMALLSERIAL NOT NULL,

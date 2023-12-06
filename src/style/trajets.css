@@ -44,3 +44,7 @@ th {
     color: #dc3545;
 
 }
+
+.invisible {
+    color:rgba(240, 248, 255, 0);
+}

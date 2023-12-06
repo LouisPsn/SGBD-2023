@@ -68,7 +68,8 @@ JOIN (SELECT id_etape, etapes.date, nom FROM etapes JOIN villes ON villes.id_vil
               <th scope="col">Voiture</th>
               <th scope="col">Lieu et Date de Départ</th>
               <th scope="col">Lieu et Date d'Arrivée</th>
-              <th scope="col"> </th>
+              <th scope="col" class="invisible">motplu</th>
+              <th scope="col"></th>
               <!-- <th scope="col">Avis</th> -->
               <th scope="col">
                 <center>Suppression</center>
@@ -107,13 +108,14 @@ JOIN (SELECT id_etape, etapes.date, nom FROM etapes JOIN villes ON villes.id_vil
             echo "<td>".$row_voyage[2].$row_voyage[3]."</td>";
             echo "<td>".$row_voyage[4].extract_date($row_voyage[5])."</td>";
             echo "<td>".$row_voyage[6].extract_date($row_voyage[7])."</td>";
+            echo "<td> </td>";
             echo "<td> <button class='bouton_resa' id='resa_voyage".$row_voyage[0]."'>Hide Resa</button> </td>";
 
             echo "
                               <form id='form-suppresion-voyage".$row_voyage[0]."' class='d-none' action='delete.php' method='post'>  
                                 <input type='hidden' name='page' value='trajets'>
                                 <input type='hidden' name='table' value='voyages'>
-                                <input type='hidden' name='id_etudiant' value='$row[0]'>
+                                <input type='hidden' name='id_etudiant' value=$row_voyage[0]>
                               
                                 <!-- Button trigger modal -->
                                 <td>
@@ -155,10 +157,10 @@ JOIN (SELECT id_etape, etapes.date, nom FROM etapes JOIN villes ON villes.id_vil
             */
             // echo "<tr> <td> Après </td> </tr>";
           
-            echo "<tr class='reservation-header resa resa_voyage".$row_voyage[0]."'><td> </td><td>Reservation</td><td>Passager</td><td>Etape départ</td><td>Etape arrivée</td><td>Status</td><td>Suppression</td></tr>";
+            echo "<tr class='reservation-header resa resa_voyage".$row_voyage[0]."'><td> </td><td>Reservation</td><td>Passager</td><td>Etape départ</td><td>Etape arrivée</td><td>Prix proposé</td><td>Status</td><td>Suppression</td></tr>";
 
 
-            $query_resa_du_voyage = "SELECT id_reservation, prenom, etape1.nom, etape2.nom, confirmation_reservation FROM (SELECT id_reservation , prenom, etape_depart_resa, etape_arrive_resa, confirmation_reservation FROM reservations
+            $query_resa_du_voyage = "SELECT id_reservation, prenom, etape1.nom, etape2.nom,confirmation_reservation FROM (SELECT id_reservation , prenom, etape_depart_resa, etape_arrive_resa, confirmation_reservation FROM reservations
               -- JOIN etudiants ON etudiants.id_etudiant = reservations.id_voyage
               JOIN etudiants ON reservations.id_etudiant = etudiants.id_etudiant
               JOIN voyages ON voyages.id_voyage = reservations.id_voyage

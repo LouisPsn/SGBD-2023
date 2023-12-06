@@ -1,6 +1,6 @@
 # Projet SGBD : Covoiturage sur le campus
 
-[![forthebadge](https://forthebadge.com/images/featured/featured-built-with-love.svg)](https://forthebadge.com)
+<!-- [![forthebadge](https://forthebadge.com/images/featured/featured-built-with-love.svg)](https://forthebadge.com) -->
 
 Projet d'initiation à la gestion et l'utilisation de bases de données.
 

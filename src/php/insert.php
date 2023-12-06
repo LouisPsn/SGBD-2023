@@ -46,9 +46,9 @@ if ($table === "etudiants") {
         $query = "SELECT id_etape FROM etapes WHERE date = '$date_arrivee' AND id_ville = $_POST[id_ville_arrivee];";
         $result = pg_query($dbconn, $query);
         $result = pg_fetch_array($result);
-        $etape_depart_voyage = $result[0];
+        $etape_arrivee_voyage = $result[0];
 
-        $query = "INSERT INTO voyages (nombre_places, id_voiture, distance, etape_depart_voyage, etape_arrive_voyage) VALUES ($_POST[nombre_de_place], $id_voiture, $_POST[distance], $etape_depart_voyage, $etape_depart_voyage);";
+        $query = "INSERT INTO voyages (nombre_places, id_voiture, distance, etape_depart_voyage, etape_arrive_voyage) VALUES ($_POST[nombre_de_place], $id_voiture, $_POST[distance], $etape_depart_voyage, $etape_arrivee_voyage);";
     }
 }
 

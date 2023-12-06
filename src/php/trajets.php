@@ -18,7 +18,7 @@
   <link href="https://cdn.datatables.net/v/bs5/jq-3.7.0/dt-1.13.8/datatables.css" rel="stylesheet">
   <script src="../js/datatables.js"></script>
   <script src="../js/index.js"></script>
-  <script src="../js/trajets.js" defer></script>
+  <!-- <script src="../js/trajets.js" defer></script> -->
 
   <center>
     <h1>
@@ -139,7 +139,7 @@ JOIN (SELECT id_etape, etapes.date, nom FROM etapes JOIN villes ON villes.id_vil
                                       <div class='input-group mb-3'>
                                         <input name='mot_de_passe' type='password' class='form-control' placeholder='Mot de Passe*'
                                           aria-label='Mot de Passe' aria-describedby='saisie-mot-de-passe'>
-                                        </div>
+                                      </div>
                                       </div>
                                       <div class='modal-footer'>
                                         <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Fermer</button>

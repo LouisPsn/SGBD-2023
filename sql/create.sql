@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS voitures (
 
 CREATE TABLE IF NOT EXISTS etapes (
     id_etape SMALLSERIAL PRIMARY KEY,
-    date TIMESTAMP NOT NULL,
+    date TIMESTAMP without time zone NOT NULL,
     id_ville SMALLSERIAL NOT NULL,
     FOREIGN KEY (id_ville) REFERENCES villes(id_ville) ON DELETE CASCADE
 );

@@ -182,9 +182,16 @@ JOIN (SELECT id_etape, etapes.date, nom FROM etapes JOIN villes ON villes.id_vil
               //   // echo "<td>" . $row_resa[6] . "</td>";
               //   // echo "<td>" . $row_resa[2] . "</td>";
           
-              for($i = 0; $i < 6; $i++) {
+              for($i = 0; $i < 5; $i++) {
                 # code...
                 echo "<td>".$row_resa[$i]."</td>";
+              }
+              if ($row_resa[5] == "refuse") {
+                echo "<td>Refusé</td>";
+              } else if ($row_resa[5] == "accepte") {
+                echo "<td>Accepté</td>";
+              } else if ($row_resa[5] == "attente") {
+                echo "<td>En Attente</td>";
               }
 
 

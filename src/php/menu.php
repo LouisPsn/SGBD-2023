@@ -77,6 +77,15 @@
           }
           ?>
         </li>
+        <li class="nav-item">
+          <?php
+          if (basename($_SERVER['PHP_SELF']) == "information.php") {
+            echo "<a class=\"nav-link active\" aria-current=\"page\" href=\"\">Informations</a>";
+          } else {
+            echo "<a class=\"nav-link\" href=\"" . $beg_href . "information.php\">Informations</a>";
+          }
+          ?>
+        </li>
       </ul>
     </div>
   </div>

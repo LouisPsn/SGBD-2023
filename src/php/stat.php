@@ -83,18 +83,28 @@
             </thead>
             <tbody>
               <?php
-              $haha = "SELECT e.nom, e.prenom, AVG(a.note) as moy from etudiants e, avis a, voitures v WHERE a.id_etudiant = e.id_etudiant AND v.id_etudiant = e.id_etudiant GROUP BY e.id_etudiant ORDER BY moy DESC ;";
-              $resulto = pg_query($db_handle, $haha);
+              $sql1 = "SELECT * FROM etudiants JOIN voitures ON etudiants.id_etudiant = voitures.id_etudiant ORDER BY etudiants.id_etudiant;";
+              // $haha = "SELECT e.nom, e.prenom /* AVG(a.note) as moy */ from etudiants e, avis a, voitures v WHERE a.id_etudiant = e.id_etudiant AND v.id_etudiant = e.id_etudiant /* GROUP BY e.id_etudiant */ /* ORDER BY moy DESC  */;";
+              $resulto = pg_query($db_handle, $sql1);
 
               ?>
               <?php
 
               while ($row = pg_fetch_array($resulto)) {
+                $query = "SELECT AVG(note) FROM avis
+                JOIN voyages ON voyages.id_voyage = avis.id_voyage
+                JOIN voitures ON voitures.id_voiture = voyages.id_voiture
+                WHERE voitures.id_etudiant = $row[0];";
+                $avis = pg_query($db_handle, $query);
                 echo "<tr>";
-                echo "<td scope=\"row\">" . $row[0] . "</th>";
+                // echo "<th scope=\"row\">" . $row[0] . "</th>";
                 echo "<td>" . $row[1] . "</td>";
-                echo "<td>" . number_format($row[2], 2) . "</td>";
-                echo "<tr>";
+                echo "<td>" . $row[2] . "</td>";
+                // echo "<td>" . $row[3] . "</td>";
+                // echo "<td>" . $row[4] . "</td>";
+                // echo "<td>" . $row[5] . "</td>";
+                $note = pg_fetch_row($avis);
+                echo "<td>" . number_format($note[0], 2) . "</td>";
               }
               ?>
             </tbody>
@@ -123,7 +133,7 @@
               $row = pg_fetch_array($resulto);
               $rr = pg_fetch_array($ressss);
               echo "<tr>";
-              $avg = number_format($row[0]/$rr[0], 2);
+              $avg = number_format($row[0] / $rr[0], 2);
               echo "<td>$avg</td>";
               ?>
             </tbody>

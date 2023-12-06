@@ -110,7 +110,7 @@
           <table class="table table-hover table-responsive" id="table_stats3">
             <thead>
               <tr>
-                <th scope="col">Nombre de passagés moyen</th>
+                <th scope="col">Nombre de passagers moyen</th>
                 <!-- <th scope="col">Notes</th> -->
               </tr>
             </thead>
@@ -126,7 +126,8 @@
               $row = pg_fetch_array($resulto);
               $rr = pg_fetch_array($ressss);
               echo "<tr>";
-              echo "<td>$row[0]/$rr[0]</td>";
+              $avg = number_format($row[0]/$rr[0], 2);
+              echo "<td>$avg</td>";
               ?>
             </tbody>
           </table>

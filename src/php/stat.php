@@ -100,9 +100,7 @@
                 echo "<tr>";
                 echo "<td scope=\"row\">".$row[0]."</th>";
                 echo "<td>".$row[1]."</td>";
-                // echo "<td>" . number_format($row[1], 2) . "</td>";
-                echo "<td>".$row[2]."</td>";
-                echo "<td>".$row[3]."</td>";
+                echo "<td>".number_format($row[2], 2)."</td>";
                 echo "<tr>";
               }
               ?>
@@ -126,8 +124,8 @@
               $params = parse_ini_file('../../database.ini');
 
               $db_handle = pg_connect("host=".$params['host']." port=".$params['port']." password=".$params['password']);
-
-              $sql = "SELECT nb_pass.*  FROM (SELECT count(e.*)  FROM etudiants e, reservations r, voyages v WHERE e.id_etudiant = r.id_etudiant AND r.id_voyage = v.id_voyage AND r.confirmation_reservation = 'accepte') as nb_pass; ";
+              $sql = "SELECT nb_pass.*  FROM (SELECT count(e.*)  FROM etudiants e, reservations r, voyages v, etapes et WHERE e.id_etudiant = r.id_etudiant AND r.id_voyage = v.id_voyage AND v.etape_arrive_voyage = et.id_etape AND et.date < NOW() AND r.confirmation_reservation = 'accepte') as nb_pass; ";
+              // $sql = "SELECT nb_pass.*  FROM (SELECT count(e.*)  FROM etudiants e, reservations r, voyages v WHERE e.id_etudiant = r.id_etudiant AND r.id_voyage = v.id_voyage AND r.confirmation_reservation = 'accepte') as nb_pass; ";
               $voy = "SELECT count(*) FROM voyages;";
               $resulto = pg_query($db_handle, $sql);
               $ressss = pg_query($db_handle, $voy);
@@ -138,9 +136,9 @@
               echo "<tr>";
               echo "<td>$row[0]/$rr[0]</td>";
               ?>
+            </tbody>
           </table>
         </div>
-
 
         <div class="d-none" id="stat4">
           <h3>Moyenne des distances effectuées</h3>
@@ -157,8 +155,8 @@
               $params = parse_ini_file('../../database.ini');
 
               $db_handle = pg_connect("host=".$params['host']." port=".$params['port']." password=".$params['password']);
-              $dist = "SELECT AVG(v.distance) as vroom , e.date FROM voyages v,etapes e GROUP BY e.date ORDER BY vroom;";
-              $haha = "SELECT e.nom, e.prenom, AVG(a.note) as moy from etudiants e, avis a, voitures v WHERE a.id_etudiant = e.id_etudiant AND v.id_etudiant = e.id_etudiant GROUP BY e.id_etudiant ORDER BY moy DESC ;";
+              $dist = "SELECT AVG(v.distance) as vroom , e.date FROM voyages v,etapes e WHERE e.date < NOW() GROUP BY e.date ORDER BY vroom;";
+
 
               $resulto = pg_query($db_handle, $dist);
 
@@ -175,9 +173,10 @@
             </tbody>
           </table>
         </div>
+
+
       </div>
     </div>
-  </div>
 </body>
 
 </html>

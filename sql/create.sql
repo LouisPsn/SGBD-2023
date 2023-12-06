@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS voitures (
     etat CHAR(32),
     divers CHAR(64),
     id_etudiant SMALLSERIAL UNIQUE NOT NULL,
-    FOREIGN KEY (id_etudiant) REFERENCES etudiants(id_etudiant) ON DELETE CASCADE
+    FOREIGN KEY (id_etudiant) REFERENCES etudiants(id_etudiant)
 );
 
 CREATE TABLE IF NOT EXISTS etapes (
@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS reservations (
     id_reservation SMALLSERIAL PRIMARY KEY,
     confirmation_reservation confirmation NOT NULL,
     id_voyage SMALLSERIAL NOT NULL,
-    FOREIGN KEY (id_voyage) REFERENCES voyages(id_voyage) ON DELETE CASCADE,
+    FOREIGN KEY (id_voyage) REFERENCES voyages(id_voyage),
     date TIMESTAMP NOT NULL,
     proposition_prix INT NOT NULL,
     etape_depart_resa SMALLSERIAL NOT NULL,

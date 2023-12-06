@@ -31,7 +31,7 @@
 
   $db_handle = pg_connect("host=" . $params['host'] . " port=" . $params['port'] . " password=" . $params['password']);
 
-  $sql = "SELECT * FROM etudiants LEFT OUTER JOIN voitures ON etudiants.id_etudiant = voitures.id_etudiant WHERE id_voiture is null ORDER BY nom;";
+  $sql = "SELECT * FROM etudiants LEFT OUTER JOIN voitures ON etudiants.id_etudiant = voitures.id_etudiant WHERE id_voiture is null ORDER BY etudiants.id_etudiant;";
   $result = pg_query($db_handle, $sql);
   ?>
 
@@ -40,7 +40,7 @@
 
       <!-- <div class="col-1"></div> -->
       <div class="col">
-        <table id="example" class="display" style="width:100%">
+        <table class="display table table-striped" id="table_passagers" style="width:100%">
           <thead>
             <tr>
               <th scope="col">ID Étudiant</th>

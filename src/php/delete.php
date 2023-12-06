@@ -10,7 +10,7 @@ if ($table === "etudiants") {
     $res = pg_query($dbconn, $query);
     $res = pg_fetch_array($res);
     if ($res > 0) {
-        $query = "DELETE FROM etudiants WHERE id_etudiant = '$_POST[id_etudiant]' AND mot_de_passe = '$_POST[mot_de_passe]';";
+        $query = "DELETE FROM etudiants WHERE id_etudiant = $_POST[id_etudiant] AND mot_de_passe = '$_POST[mot_de_passe]';";
     } else {
         function_alert("Mauvais mot de passe", $page);
     }
@@ -19,12 +19,12 @@ if ($table === "etudiants") {
     $res = pg_query($dbconn, $query);
     $conducteur = pg_fetch_row($res);
     if ($conducteur > 0) {
-        $query = "DELETE FROM voitures WHERE id_voiture = '$_POST[id_voiture]';";
+        $query = "DELETE FROM voitures WHERE id_voiture = $_POST[id_voiture];";
     } else {
         function_alert("Mauvais mot de passe", $page);
     }
 } elseif ($table === "villes") {
-    $query = "DELETE FROM villes WHERE id_ville = '$_POST[id_ville]';";
+    $query = "DELETE FROM villes WHERE id_ville = $_POST[id_ville];";
 }
 elseif ($table === "voyages") {
     $query = "SELECT COUNT(*) FROM etudiants WHERE id_etudiant = $_POST[id_etudiant] AND mot_de_passe = '$_POST[mot_de_passe]'";
@@ -40,7 +40,7 @@ elseif ($table === "voyages") {
     $res = pg_query($dbconn, $query);
     $trajets = pg_fetch_row($res);
     if ($trajets > 0) {
-        $query = "DELETE FROM reservations WHERE id_reservation = '$_POST[id_reservation]';";
+        $query = "DELETE FROM reservations WHERE id_reservation = $_POST[id_reservation];";
     } else {
         function_alert("Mauvais mot de passe", $page);
     }

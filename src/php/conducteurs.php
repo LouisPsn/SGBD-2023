@@ -31,7 +31,7 @@
 
   $db_handle = pg_connect("host=" . $params['host'] . " port=" . $params['port'] . " password=" . $params['password']);
 
-  $sql = "SELECT * FROM etudiants JOIN voitures ON etudiants.id_etudiant = voitures.id_etudiant;";
+  $sql = "SELECT * FROM etudiants JOIN voitures ON etudiants.id_etudiant = voitures.id_etudiant ORDER BY etudiants.id_etudiant;";
   $result = pg_query($db_handle, $sql);
   ?>
 
@@ -40,7 +40,7 @@
 
       <!-- <div class="col-1"></div> -->
       <div class="col">
-        <table id="example" class="display" style="width:100%">
+        <table class="display table table-striped" id="table_conducteurs" style="width:100%">
           <thead>
             <tr>
               <th data-sortable="true" scope="col">ID Étudiant</button></th>
@@ -74,11 +74,11 @@
               echo "<td>" . number_format($note[0], 2) . "</td>";
 
               echo "
-              <form id='form-suppresion-etudiant' class='d-none' action='delete.php' method='post'>  
+              <form id='form-suppresion-conducteur".$row[0]."' class='d-none' action='delete.php' method='post'>  
                 <input type='hidden' name='page' value='conducteurs'>
                 <input type='hidden' name='table' value='etudiants'>
                 <input type='hidden' name='id_etudiant' value='$row[0]'>
-                
+              
                 <!-- Button trigger modal -->
                 <td>
                 <center>
@@ -87,7 +87,7 @@
                 </button>
                 </center>
                 </td>
-
+              
                 <!-- Modal -->
                 <div class='modal fade' id='passwordModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
                   <div class='modal-dialog'>
@@ -100,7 +100,7 @@
                       <div class='input-group mb-3'>
                         <input name='mot_de_passe' type='password' class='form-control' placeholder='Mot de Passe*'
                           aria-label='Mot de Passe' aria-describedby='saisie-mot-de-passe'>
-                        </div>
+                      </div>
                       </div>
                       <div class='modal-footer'>
                         <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Fermer</button>

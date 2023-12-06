@@ -40,7 +40,7 @@
 
       <!-- <div class="col-1"></div> -->
       <div class="col">
-        <table id="example" class="display" style="width:100%">
+        <table class="display table table-striped" id="table_vehicules" style="width:100%">
           <thead>
             <tr>
               <th scope="col">ID Voiture</th>

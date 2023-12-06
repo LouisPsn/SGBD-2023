@@ -1,0 +1,46 @@
+#entete_trajets > tr > th {
+    font-size:20px;
+}
+
+.ligne_voyage > td {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+th {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.reservation-header {
+    opacity: 0.7;
+}
+
+.resa {
+    transform: display 2s;
+    
+}
+
+.bouton_resa {
+    background-color: rgba(255, 255, 255, 0.918);
+    border-radius: 7px 7px;
+}
+.bouton_resa:hover {
+    background-color: rgb(75, 75, 75);
+    color :aliceblue;
+}
+
+.btn_smaller {
+    background-color: #f0f8ff00;
+    border-color: #f0f8ff00;
+}
+
+.btn_smaller > span {
+    color: #dc3545;
+
+}

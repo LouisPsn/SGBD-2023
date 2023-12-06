@@ -44,7 +44,7 @@
      JOIN (SELECT id_etape, etapes.date, nom FROM etapes JOIN villes ON villes.id_ville = etapes.id_ville) as etapes2 ON etapes2.id_etape=voy_dep.etape_arrive_voyage
       ;"; */
 
-    "SELECT id_voyage , prenom , modele, couleur , etapes1.nom, etapes1.date, /* etape_arrive_voyage */  etapes2.nom, etapes2.date, etudiants.id_etudiant FROM voyages 
+    "SELECT id_voyage , etudiants.nom, prenom , modele, couleur , etapes1.nom, etapes1.date, /* etape_arrive_voyage */  etapes2.nom, etapes2.date, etudiants.id_etudiant FROM voyages 
 JOIN voitures ON voyages.id_voiture=voitures.id_voiture 
 JOIN etudiants ON voitures.id_etudiant = etudiants.id_etudiant 
 JOIN (SELECT id_etape, etapes.date, nom FROM etapes JOIN villes ON villes.id_ville = etapes.id_ville) as etapes1 ON etapes1.id_etape=voyages.etape_depart_voyage 
@@ -103,10 +103,10 @@ JOIN (SELECT id_etape, etapes.date, nom FROM etapes JOIN villes ON villes.id_vil
             echo "<tr class='ligne_voyage' id='voyage".$row_voyage[0]."'>";
 
             echo "<td>".$row_voyage[0]."</td>";
-            echo "<td>".$row_voyage[1]."</td>";
-            echo "<td>".$row_voyage[2].$row_voyage[3]."</td>";
-            echo "<td>".$row_voyage[4].extract_date($row_voyage[5])."</td>";
-            echo "<td>".$row_voyage[6].extract_date($row_voyage[7])."</td>";
+            echo "<td>".$row_voyage[1] . $row_voyage[2]."</td>";
+            echo "<td>".$row_voyage[3].$row_voyage[4]."</td>";
+            echo "<td>".$row_voyage[5].$row_voyage[6]."</td>";
+            echo "<td>".$row_voyage[7].$row_voyage[8]."</td>";
             echo "<td> </td>";
             echo "<td> <button class='bouton_resa' id='resa_voyage".$row_voyage[0]."'>Show Resa</button> </td>";
 
@@ -116,7 +116,7 @@ JOIN (SELECT id_etape, etapes.date, nom FROM etapes JOIN villes ON villes.id_vil
                               <input type='hidden' name='page' value='trajets'>
                                 <input type='hidden' name='table' value='voyages'>
                                 <input type='hidden' name='id_voyage' value=$row_voyage[0]>
-                                <input type='hidden' name='id_etudiant' value=$row_voyage[8]>
+                                <input type='hidden' name='id_etudiant' value=$row_voyage[9]>
                               
                                 <!-- Button trigger modal -->
                                 <td>
@@ -182,9 +182,16 @@ JOIN (SELECT id_etape, etapes.date, nom FROM etapes JOIN villes ON villes.id_vil
               //   // echo "<td>" . $row_resa[6] . "</td>";
               //   // echo "<td>" . $row_resa[2] . "</td>";
           
-              for($i = 0; $i < 6; $i++) {
+              for($i = 0; $i < 5; $i++) {
                 # code...
                 echo "<td>".$row_resa[$i]."</td>";
+              }
+              if ($row_resa[5] == "refuse") {
+                echo "<td>Refusé</td>";
+              } else if ($row_resa[5] == "accepte") {
+                echo "<td>Accepté</td>";
+              } else if ($row_resa[5] == "attente") {
+                echo "<td>En Attente</td>";
               }
 
 

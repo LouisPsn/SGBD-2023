@@ -19,7 +19,7 @@
   include "php/menu.php";
 
   $params = parse_ini_file('../database.ini');
-  $db_handle = pg_connect("host=".$params['host']." port=".$params['port']." password=".$params['password']);
+  $db_handle = pg_connect("host=" . $params['host'] . " port=" . $params['port'] . " password=" . $params['password']);
 
   ?>
 
@@ -32,6 +32,7 @@
             <option value="ajout_etudiant" selected>Ajouter un étudiant</option>
             <option value="ajout_voiture">Ajouter une voiture</option>
             <option value="ajout_ville">Ajouter une ville</option>
+            <option value="ajout_voyage">Ajouter un voyage</option>
             <option value="modification_etudiant">Modifier un étudiant</option>
             <option value="modification_voiture">Modifier une voiture</option>
             <option value="modification_mot_de_passe">Modifier un mot de passe</option>
@@ -90,7 +91,7 @@
               <?php
               $query = "SELECT * FROM etudiants LEFT OUTER JOIN voitures ON etudiants.id_etudiant = voitures.id_etudiant WHERE id_voiture is null ORDER BY nom;";
               $result = pg_query($db_handle, $query);
-              while($row = pg_fetch_array($result)) {
+              while ($row = pg_fetch_array($result)) {
                 echo "<option value='$row[0]'>$row[1] $row[2]</option>";
               }
               ?>
@@ -142,6 +143,81 @@
           </div>
         </form>
 
+        <!-- form ajout voyage -->
+        <form id="form-ajout-voyage" class="d-none" action="php/insert.php" method="post">
+          <input type='hidden' name='table' value='voyages'>
+
+          <div class="input-group mb-3">
+            <select name="id_etudiant" class="form-select" aria-label="Default select example">
+              <option selected>Sélectionner un étudiant</option>
+              <?php
+              $query = "SELECT etudiants.id_etudiant, nom, prenom FROM etudiants JOIN voitures ON etudiants.id_etudiant = voitures.id_etudiant ORDER BY nom;";
+              $result = pg_query($db_handle, $query);
+              while ($row = pg_fetch_array($result)) {
+                echo "<option value='$row[0]'>$row[1] $row[2]</option>";
+              }
+              ?>
+            </select>
+          </div>
+
+          <div class="input-group mb-3">
+            <input name="nombre_de_place" type="text" class="form-control" placeholder="Nombre de place*"
+              aria-label="Nombre de place" aria-describedby="saisie-nombre-de-place">
+            <input name="distance" type="text" class="form-control" placeholder="Distance" aria-label="Distance"
+              aria-describedby="saisie-distance">
+          </div>
+
+          <div class="input-group mb-3">
+            Étape de départ
+          </div>
+          <div class="input-group mb-3">
+            <input name="date_depart" type="datetime-local" class="form-control" placeholder="Date de départ*"
+              aria-label="Date depart" aria-describedby="saisie-date-depart">
+          </div>
+          <div class="input-group mb-3">
+            <select name="id_ville_depart" class="form-select" aria-label="Default select example">
+              <option selected>Sélectionner une ville de départ</option>
+              <?php
+              $query = "SELECT id_ville, nom FROM villes ORDER BY nom;";
+              $result = pg_query($db_handle, $query);
+              while ($row = pg_fetch_array($result)) {
+                echo "<option value='$row[0]'>$row[1]</option>";
+              }
+              ?>
+            </select>
+          </div>
+          &nbsp;
+
+          <div class="input-group mb-3">
+            Étape d'arrivée
+          </div>
+          <div class="input-group mb-3">
+            <input name="date_arrivee" type="datetime-local" class="form-control" placeholder="Date d'arrivée*'"
+              aria-label="Date arrivee" aria-describedby="saisie-date-arrivee">
+          </div>
+          <div class="input-group mb-3">
+            <select name="id_ville_arrivee" class="form-select" aria-label="Default select example">
+              <option selected>Sélectionner une ville de d'arrivée'</option>
+              <?php
+              $query = "SELECT id_ville, nom FROM villes ORDER BY nom;";
+              $result = pg_query($db_handle, $query);
+              while ($row = pg_fetch_array($result)) {
+                echo "<option value='$row[0]'>$row[1]</option>";
+              }
+              ?>
+            </select>
+          </div>
+
+          <div class="input-group mb-3">
+            <input name="mot_de_passe" type="password" class="form-control" placeholder="Mot de Passe*"
+              aria-label="Mot de Passe" aria-describedby="saisie-mot-de-passe">
+          </div>
+
+          <div class="input-group mb-3">
+            <button type="input" class="btn btn btn-dark">Envoyer</button>
+          </div>
+        </form>
+
         <!-- form modification etudiant -->
         <form id="form-modification-etudiant" class="d-none" action="php/modify.php" method="post">
           <input type='hidden' name='table' value='etudiants'>
@@ -152,7 +228,7 @@
               <?php
               $query = "SELECT id_etudiant, nom, prenom FROM etudiants ORDER BY nom;";
               $result = pg_query($db_handle, $query);
-              while($row = pg_fetch_array($result)) {
+              while ($row = pg_fetch_array($result)) {
                 echo "<option value='$row[0]'>$row[1] $row[2]</option>";
               }
               ?>
@@ -190,7 +266,7 @@
               <?php
               $query = "SELECT etudiants.id_etudiant, nom, prenom FROM etudiants JOIN voitures ON etudiants.id_etudiant = voitures.id_etudiant ORDER BY nom;";
               $result = pg_query($db_handle, $query);
-              while($row = pg_fetch_array($result)) {
+              while ($row = pg_fetch_array($result)) {
                 echo "<option value='$row[0]'>$row[1] $row[2]</option>";
               }
               ?>
@@ -239,7 +315,7 @@
               <?php
               $query = "SELECT id_etudiant, nom, prenom FROM etudiants ORDER BY nom;";
               $result = pg_query($db_handle, $query);
-              while($row = pg_fetch_array($result)) {
+              while ($row = pg_fetch_array($result)) {
                 echo "<option value='$row[0]'>$row[1] $row[2]</option>";
               }
               ?>

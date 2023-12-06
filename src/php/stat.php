@@ -27,7 +27,8 @@
   $db_handle = pg_connect("host=".$params['host']." port=".$params['port']." password=".$params['password']);
   ?>
 
-  <div class="container-fluid border">
+  &nbsp;
+  <div class="container-fluid">
     <div class="row">
       <div class="col-sm-3 align-self-start">
         <form method="get">
@@ -40,6 +41,7 @@
         </form>
       </div>
     </div>
+    &nbsp;
 
     <div class="container">
       <div class="row justify-content-center">

@@ -19,11 +19,12 @@
   include "php/menu.php";
 
   $params = parse_ini_file('../database.ini');
-  $db_handle = pg_connect("host=" . $params['host'] . " port=" . $params['port'] . " password=" . $params['password']);
+  $db_handle = pg_connect("host=".$params['host']." port=".$params['port']." password=".$params['password']);
 
   ?>
 
-  <div class="container-fluid border">
+  &nbsp;
+  <div class="container-fluid">
     <div class="row">
       <div class="col-sm-3 align-self-start">
         <form method="get">
@@ -38,6 +39,7 @@
         </form>
       </div>
     </div>
+    &nbsp;
 
     <!-- Formulaires d'ajouts -->
     <div class="row justify-content-center"> <!-- les div avec des colonnes sectionnent la page en lignes -->
@@ -88,7 +90,7 @@
               <?php
               $query = "SELECT * FROM etudiants LEFT OUTER JOIN voitures ON etudiants.id_etudiant = voitures.id_etudiant WHERE id_voiture is null ORDER BY nom;";
               $result = pg_query($db_handle, $query);
-              while ($row = pg_fetch_array($result)) {
+              while($row = pg_fetch_array($result)) {
                 echo "<option value='$row[0]'>$row[1] $row[2]</option>";
               }
               ?>
@@ -150,7 +152,7 @@
               <?php
               $query = "SELECT id_etudiant, nom, prenom FROM etudiants ORDER BY nom;";
               $result = pg_query($db_handle, $query);
-              while ($row = pg_fetch_array($result)) {
+              while($row = pg_fetch_array($result)) {
                 echo "<option value='$row[0]'>$row[1] $row[2]</option>";
               }
               ?>
@@ -188,7 +190,7 @@
               <?php
               $query = "SELECT etudiants.id_etudiant, nom, prenom FROM etudiants JOIN voitures ON etudiants.id_etudiant = voitures.id_etudiant ORDER BY nom;";
               $result = pg_query($db_handle, $query);
-              while ($row = pg_fetch_array($result)) {
+              while($row = pg_fetch_array($result)) {
                 echo "<option value='$row[0]'>$row[1] $row[2]</option>";
               }
               ?>
@@ -237,7 +239,7 @@
               <?php
               $query = "SELECT id_etudiant, nom, prenom FROM etudiants ORDER BY nom;";
               $result = pg_query($db_handle, $query);
-              while ($row = pg_fetch_array($result)) {
+              while($row = pg_fetch_array($result)) {
                 echo "<option value='$row[0]'>$row[1] $row[2]</option>";
               }
               ?>
@@ -245,15 +247,18 @@
           </div>
 
           <div class="input-group mb-3">
-            <input name="ancien_mot_de_passe" type="password" class="form-control" placeholder="Ancien mot de passe*" aria-label="Adresse mail">
+            <input name="ancien_mot_de_passe" type="password" class="form-control" placeholder="Ancien mot de passe*"
+              aria-label="Adresse mail">
           </div>
 
           <div class="input-group mb-3">
-            <input name="nouveau_mot_de_passe_1" type="password" class="form-control" placeholder="Nouveau mot de passe*" aria-label="Nouveau mot de passe">
+            <input name="nouveau_mot_de_passe_1" type="password" class="form-control"
+              placeholder="Nouveau mot de passe*" aria-label="Nouveau mot de passe">
           </div>
 
           <div class="input-group mb-3">
-            <input name="nouveau_mot_de_passe_2" type="password" class="form-control" placeholder="Répéter nouveau mot de passe*" aria-label="Répéter nouveau mot de passe">
+            <input name="nouveau_mot_de_passe_2" type="password" class="form-control"
+              placeholder="Répéter nouveau mot de passe*" aria-label="Répéter nouveau mot de passe">
           </div>
 
           <div class="input-group mb-3">

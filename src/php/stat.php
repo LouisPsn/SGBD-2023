@@ -22,6 +22,9 @@
 
   <?php
   include "menu.php";
+
+  $params = parse_ini_file('../../database.ini');
+  $db_handle = pg_connect("host=".$params['host']." port=".$params['port']." password=".$params['password']);
   ?>
 
   <div class="container-fluid border">
@@ -52,12 +55,7 @@
               </tr>
             </thead>
             <tbody>
-
               <?php
-
-              $params = parse_ini_file('../../database.ini');
-
-              $db_handle = pg_connect("host=".$params['host']." port=".$params['port']." password=".$params['password']);
               $city = "SELECT v.nom, COUNT(e.*) as nb FROM villes v, etapes e WHERE e.id_ville = v.id_ville GROUP BY v.nom ORDER BY nb DESC; ";
               $result = pg_query($db_handle, $city);
               ?>
@@ -86,10 +84,6 @@
             </thead>
             <tbody>
               <?php
-
-              $params = parse_ini_file('../../database.ini');
-
-              $db_handle = pg_connect("host=".$params['host']." port=".$params['port']." password=".$params['password']);
               $haha = "SELECT e.nom, e.prenom, AVG(a.note) as moy from etudiants e, avis a, voitures v WHERE a.id_etudiant = e.id_etudiant AND v.id_etudiant = e.id_etudiant GROUP BY e.id_etudiant ORDER BY moy DESC ;";
               $resulto = pg_query($db_handle, $haha);
 
@@ -120,10 +114,6 @@
             </thead>
             <tbody>
               <?php
-
-              $params = parse_ini_file('../../database.ini');
-
-              $db_handle = pg_connect("host=".$params['host']." port=".$params['port']." password=".$params['password']);
               $sql = "SELECT nb_pass.*  FROM (SELECT count(e.*)  FROM etudiants e, reservations r, voyages v, etapes et WHERE e.id_etudiant = r.id_etudiant AND r.id_voyage = v.id_voyage AND v.etape_arrive_voyage = et.id_etape AND et.date < NOW() AND r.confirmation_reservation = 'accepte') as nb_pass; ";
               // $sql = "SELECT nb_pass.*  FROM (SELECT count(e.*)  FROM etudiants e, reservations r, voyages v WHERE e.id_etudiant = r.id_etudiant AND r.id_voyage = v.id_voyage AND r.confirmation_reservation = 'accepte') as nb_pass; ";
               $voy = "SELECT count(*) FROM voyages;";
@@ -151,10 +141,6 @@
             </thead>
             <tbody>
               <?php
-
-              $params = parse_ini_file('../../database.ini');
-
-              $db_handle = pg_connect("host=".$params['host']." port=".$params['port']." password=".$params['password']);
               $dist = "SELECT AVG(v.distance) as vroom , e.date FROM voyages v,etapes e WHERE e.date < NOW() GROUP BY e.date ORDER BY vroom;";
 
 

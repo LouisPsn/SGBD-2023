@@ -113,7 +113,7 @@ JOIN (SELECT id_etape, etapes.date, nom FROM etapes JOIN villes ON villes.id_vil
                               <form id='form-suppresion-voyage".$row_voyage[0]."' class='d-none' action='delete.php' method='post'>  
                                 <input type='hidden' name='page' value='trajets'>
                                 <input type='hidden' name='table' value='voyages'>
-                                <input type='hidden' name='id_etudiant' value='$row[0]'>
+                                <input type='hidden' name='id_etudiant' value='$row_voyage[0]'>
                               
                                 <!-- Button trigger modal -->
                                 <td>
@@ -189,7 +189,7 @@ JOIN (SELECT id_etape, etapes.date, nom FROM etapes JOIN villes ON villes.id_vil
                 <form id='form-suppresion-resa".$row_resa[0]."' class='d-none' action='delete.php' method='post'>  
                   <input type='hidden' name='page' value='trajets'>
                   <input type='hidden' name='table' value='reservations'>
-                  <input type='hidden' name='id_etudiant' value='$row[0]'>
+                  <input type='hidden' name='id_etudiant' value='$row_resa[0]'>
                 
                   <!-- Button trigger modal -->
                   <td>

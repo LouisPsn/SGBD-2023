@@ -108,7 +108,7 @@ JOIN (SELECT id_etape, etapes.date, nom FROM etapes JOIN villes ON villes.id_vil
             echo "<td>" . $row_voyage[3] . $row_voyage[4] . "</td>";
             echo "<td>" . $row_voyage[5] . $row_voyage[6] . "</td>";
             echo "<td>" . $row_voyage[7] . $row_voyage[8] . "</td>";
-            echo "<td> </td>";
+            echo "<td>  </td>";
             echo "<td> <button class='bouton_resa' id='resa_voyage" . $row_voyage[0] . "'>Show Resa</button> </td>";
 
             echo "
@@ -159,7 +159,7 @@ JOIN (SELECT id_etape, etapes.date, nom FROM etapes JOIN villes ON villes.id_vil
             */
             // echo "<tr> <td> Après </td> </tr>";
           
-            echo "<tr class='reservation-header resa resa_voyage" . $row_voyage[0] . "'><td> </td><td>Reservation</td><td>Passager</td><td>Etape départ</td><td>Etape arrivée</td><td>Prix proposé</td><td>Status</td><td>Suppression</td></tr>";
+            echo "<tr class='reservation-header resa resa_voyage" . $row_voyage[0] . "'><td> Validation </td><td>Reservation</td><td>Passager</td><td>Etape départ</td><td>Etape arrivée</td><td>Prix proposé</td><td>Status</td><td>Suppression</td></tr>";
 
 
             $query_resa_du_voyage = "SELECT id_reservation, prenom, etape1.nom, etape2.nom, proposition_prix, confirmation_reservation, resa.id_etudiant FROM (SELECT id_reservation , prenom, etape_depart_resa, etape_arrive_resa, proposition_prix, confirmation_reservation, etudiants.id_etudiant FROM reservations
@@ -175,7 +175,60 @@ JOIN (SELECT id_etape, etapes.date, nom FROM etapes JOIN villes ON villes.id_vil
             while ($row_resa = pg_fetch_array($res_resa_du_voyage)) {
 
               //   // function_alert($row[1]);
-              echo "<tr class ='resa resa_voyage" . $row_voyage[0] . "'><td> </td>";
+              
+              echo "<tr class ='resa resa_voyage" . $row_voyage[0] . "'>
+
+              
+              <form id='form-modification-resa" . $row_resa[0] . "' class='d-none' action='modify.php' method='post'>
+                <input type='hidden' name='page' value='trajets'>
+                <input type='hidden' name='table' value='reservations'>
+                <input type='hidden' name='id_etudiant' value=$row_voyage[9]>
+                <input type='hidden' name='id_reservation' value=$row_resa[0]>
+              
+                <!-- Button trigger modal -->
+                <td>
+                <center>
+                <button type='button' class='btn btn btn-dark' data-bs-toggle='modal' data-bs-target='#passwordModalResaModif'>
+                  <span>Validation</span>
+                </button>
+                </center>
+                </td>
+              
+                <!-- Modal -->
+                <div class='modal fade' id='passwordModalResaModif' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+                  <div class='modal-dialog'>
+                    <div class='modal-content'>
+                      <div class='modal-header'>
+                        <h5 class='modal-title' id='exampleModalLabel'>Mot de Passe</h5>
+                        <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+                      </div>
+                      <div class='modal-body'>
+                        <div class='input-group mb-3'>
+                        <select name='acceptation' class='form-select' aria-label='Default select example'>
+                          <option selected>Sélectionner une option</option>
+                      ";
+
+      
+                            echo "<option value='accepte'>Accepté</option>";
+                            echo "<option value='refuse'>Refusé</option>";
+
+                      echo "
+
+                        </select>
+                      </div>
+                      <div class='input-group mb-3'>
+                        <input name='mot_de_passe' type='password' class='form-control' placeholder='Mot de Passe*'
+                          aria-label='Mot de Passe' aria-describedby='saisie-mot-de-passe'>
+                        </div>
+                      </div>
+                      <div class='modal-footer'>
+                        <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Fermer</button>
+                        <button type='submit' class='btn btn-danger'>Envoyer</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>";
 
               //   // echo "<th scope=\"row\">" . $row_resa[0] . "</th>";
               //   // echo "<td>" . $row_resa[10] . "</td>";
@@ -234,6 +287,8 @@ JOIN (SELECT id_etape, etapes.date, nom FROM etapes JOIN villes ON villes.id_vil
                   </div>
                 </div>
               </form>";
+
+
               echo "</tr>";
             }
             // echo "</div>";
@@ -241,10 +296,10 @@ JOIN (SELECT id_etape, etapes.date, nom FROM etapes JOIN villes ON villes.id_vil
             // echo "<tr> </tr>";
           
             // Ajout réservations
-            $query = "SELECT COUNT(id_reservation) FROM reservations JOIN voyages ON voyages.id_voyage = reservations.id_voyage WHERE voyages.id_voyage = $row_voyage[0] AND  reservations.confirmation_reservation = 'accepte';";
+            $query = "SELECT COUNT(id_reservation) FROM reservations WHERE id_voyage = $row_voyage[0] AND confirmation_reservation = 'accepte';";
             $resultat = pg_query($db_handle, $query);
             $count_resa = pg_fetch_array($resultat);
-
+            
             if ($row_voyage[10] - $count_resa[0] > 0) {
               echo "
               <form id='form-ajout-resa' class='d-none' action='insert.php' method='post'>
@@ -312,7 +367,7 @@ JOIN (SELECT id_etape, etapes.date, nom FROM etapes JOIN villes ON villes.id_vil
                           Étape d'arrivée
                         </div>
                         <div class='input-group mb-3'>
-                          <input name='date_arrivee' type='datetime-local' class='form-control' placeholder='Date d'arrivée*''
+                          <input name='date_arrivee' type='datetime-local' class='form-control' placeholder='Date d'arrivée*'
                             aria-label='Date arrivee' aria-describedby='saisie-date-arrivee'>
                         </div>
                         <div class='input-group mb-3'>

@@ -17,8 +17,7 @@
   <link href="../style/trajets.css" rel="stylesheet">
   <link href="https://cdn.datatables.net/v/bs5/jq-3.7.0/dt-1.13.8/datatables.css" rel="stylesheet">
   <script src="../js/datatables.js"></script>
-  <script src="../js/index.js"></script>
-  <!-- <script src="../js/trajets.js" defer></script> -->
+  <script src="../js/trajets.js" defer></script>
 
   <center>
     <h1>
@@ -113,7 +112,8 @@ JOIN (SELECT id_etape, etapes.date, nom FROM etapes JOIN villes ON villes.id_vil
 
             echo "
                               <form id='form-suppresion-voyage".$row_voyage[0]."' class='d-none' action='delete.php' method='post'>  
-                                <input type='hidden' name='page' value='trajets'>
+                              <input type='hidden' name='id' value='form-suppresion-voyage".$row_voyage[0]."'>  
+                              <input type='hidden' name='page' value='trajets'>
                                 <input type='hidden' name='table' value='voyages'>
                                 <input type='hidden' name='id_voyage' value=$row_voyage[0]>
                                 <input type='hidden' name='id_etudiant' value=$row_voyage[8]>
@@ -121,14 +121,14 @@ JOIN (SELECT id_etape, etapes.date, nom FROM etapes JOIN villes ON villes.id_vil
                                 <!-- Button trigger modal -->
                                 <td>
                                 <center>
-                                <button type='button' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#passwordModal'>
+                                <button type='button' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#passwordModalVoyage'>
                                   X
                                 </button>
                                 </center>
                                 </td>
                               
                                 <!-- Modal -->
-                                <div class='modal fade' id='passwordModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+                                <div class='modal fade' id='passwordModalVoyage' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
                                   <div class='modal-dialog'>
                                     <div class='modal-content'>
                                       <div class='modal-header'>
@@ -189,7 +189,7 @@ JOIN (SELECT id_etape, etapes.date, nom FROM etapes JOIN villes ON villes.id_vil
 
 
               echo "
-                <form id='form-suppresion-resa".$row_resa[0]."' class='d-none' action='delete.php' method='post'>  
+                <form id='form-suppresion-resa".$row_resa[0]."' class='d-none' action='delete.php' method='post'>
                   <input type='hidden' name='page' value='trajets'>
                   <input type='hidden' name='table' value='reservations'>
                   <input type='hidden' name='id_etudiant' value=$row_resa[6]>
@@ -198,14 +198,14 @@ JOIN (SELECT id_etape, etapes.date, nom FROM etapes JOIN villes ON villes.id_vil
                   <!-- Button trigger modal -->
                   <td>
                   <center>
-                  <button type='button' class=' btn_smaller' data-bs-toggle='modal' data-bs-target='#passwordModal'>
+                  <button type='button' class=' btn_smaller' data-bs-toggle='modal' data-bs-target='#passwordModalResa'>
                     <span>X</span>
                   </button>
                   </center>
                   </td>
                 
                   <!-- Modal -->
-                  <div class='modal fade' id='passwordModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+                  <div class='modal fade' id='passwordModalResa' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
                     <div class='modal-dialog'>
                       <div class='modal-content'>
                         <div class='modal-header'>

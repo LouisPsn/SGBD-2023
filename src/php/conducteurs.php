@@ -77,7 +77,7 @@
               <form id='form-suppresion-conducteur".$row[0]."' class='d-none' action='delete.php' method='post'>  
                 <input type='hidden' name='page' value='conducteurs'>
                 <input type='hidden' name='table' value='etudiants'>
-                <input type='hidden' name='id_etudiant' value='$row[0]'>
+                <input type='hidden' name='id_etudiant' value=$row[0]>
               
                 <!-- Button trigger modal -->
                 <td>

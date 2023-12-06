@@ -45,7 +45,7 @@
      JOIN (SELECT id_etape, etapes.date, nom FROM etapes JOIN villes ON villes.id_ville = etapes.id_ville) as etapes2 ON etapes2.id_etape=voy_dep.etape_arrive_voyage
       ;"; */
 
-    "SELECT id_voyage , prenom , modele, couleur , etapes1.nom, etapes1.date, /* etape_arrive_voyage */  etapes2.nom, etapes2.date  FROM voyages 
+    "SELECT id_voyage , prenom , modele, couleur , etapes1.nom, etapes1.date, /* etape_arrive_voyage */  etapes2.nom, etapes2.date, etudiants.id_etudiant FROM voyages 
 JOIN voitures ON voyages.id_voiture=voitures.id_voiture 
 JOIN etudiants ON voitures.id_etudiant = etudiants.id_etudiant 
 JOIN (SELECT id_etape, etapes.date, nom FROM etapes JOIN villes ON villes.id_ville = etapes.id_ville) as etapes1 ON etapes1.id_etape=voyages.etape_depart_voyage 
@@ -109,13 +109,14 @@ JOIN (SELECT id_etape, etapes.date, nom FROM etapes JOIN villes ON villes.id_vil
             echo "<td>".$row_voyage[4].extract_date($row_voyage[5])."</td>";
             echo "<td>".$row_voyage[6].extract_date($row_voyage[7])."</td>";
             echo "<td> </td>";
-            echo "<td> <button class='bouton_resa' id='resa_voyage".$row_voyage[0]."'>Hide Resa</button> </td>";
+            echo "<td> <button class='bouton_resa' id='resa_voyage".$row_voyage[0]."'>Show Resa</button> </td>";
 
             echo "
                               <form id='form-suppresion-voyage".$row_voyage[0]."' class='d-none' action='delete.php' method='post'>  
                                 <input type='hidden' name='page' value='trajets'>
                                 <input type='hidden' name='table' value='voyages'>
-                                <input type='hidden' name='id_etudiant' value=$row_voyage[0]>
+                                <input type='hidden' name='id_voyage' value=$row_voyage[0]>
+                                <input type='hidden' name='id_etudiant' value=$row_voyage[8]>
                               
                                 <!-- Button trigger modal -->
                                 <td>
@@ -160,7 +161,7 @@ JOIN (SELECT id_etape, etapes.date, nom FROM etapes JOIN villes ON villes.id_vil
             echo "<tr class='reservation-header resa resa_voyage".$row_voyage[0]."'><td> </td><td>Reservation</td><td>Passager</td><td>Etape départ</td><td>Etape arrivée</td><td>Prix proposé</td><td>Status</td><td>Suppression</td></tr>";
 
 
-            $query_resa_du_voyage = "SELECT id_reservation, prenom, etape1.nom, etape2.nom,confirmation_reservation FROM (SELECT id_reservation , prenom, etape_depart_resa, etape_arrive_resa, confirmation_reservation FROM reservations
+            $query_resa_du_voyage = "SELECT id_reservation, prenom, etape1.nom, etape2.nom, proposition_prix, confirmation_reservation, resa.id_etudiant FROM (SELECT id_reservation , prenom, etape_depart_resa, etape_arrive_resa, proposition_prix, confirmation_reservation, etudiants.id_etudiant FROM reservations
               -- JOIN etudiants ON etudiants.id_etudiant = reservations.id_voyage
               JOIN etudiants ON reservations.id_etudiant = etudiants.id_etudiant
               JOIN voyages ON voyages.id_voyage = reservations.id_voyage
@@ -181,7 +182,7 @@ JOIN (SELECT id_etape, etapes.date, nom FROM etapes JOIN villes ON villes.id_vil
               //   // echo "<td>" . $row_resa[6] . "</td>";
               //   // echo "<td>" . $row_resa[2] . "</td>";
           
-              for($i = 0; $i < 5; $i++) {
+              for($i = 0; $i < 6; $i++) {
                 # code...
                 echo "<td>".$row_resa[$i]."</td>";
               }
@@ -191,7 +192,8 @@ JOIN (SELECT id_etape, etapes.date, nom FROM etapes JOIN villes ON villes.id_vil
                 <form id='form-suppresion-resa".$row_resa[0]."' class='d-none' action='delete.php' method='post'>  
                   <input type='hidden' name='page' value='trajets'>
                   <input type='hidden' name='table' value='reservations'>
-                  <input type='hidden' name='id_etudiant' value='$row[0]'>
+                  <input type='hidden' name='id_etudiant' value=$row_resa[6]>
+                  <input type='hidden' name='id_reservation' value=$row_resa[0]>
                 
                   <!-- Button trigger modal -->
                   <td>

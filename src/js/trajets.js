@@ -3,13 +3,13 @@ const bouton_resa_voyages = document.querySelectorAll(".bouton_resa");
 for (let index = 0; index < bouton_resa_voyages.length; index++) {
     const element = bouton_resa_voyages[index];
     // console.log(element.id);
-    
-    // const resa_voyage = document.querySelectorAll("."+element.id);
-    // for (let index = 0; index < resa_voyage.length; index++) {
-    //     const element = resa_voyage[index];
-    //     element.style.display = "none";
-    //     bouton_resa_voyages.textContent = "Show Resa";
-    // }
+
+    const resa_voyage = document.querySelectorAll("."+element.id);
+    for (let index = 0; index < resa_voyage.length; index++) {
+        const element = resa_voyage[index];
+        element.style.display = "none";
+        bouton_resa_voyages.textContent = "Show Resa";
+    }
     
     element.addEventListener('click',switch_resa_show(element.id,element))
 }

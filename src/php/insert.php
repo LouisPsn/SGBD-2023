@@ -52,7 +52,7 @@ if ($table === "etudiants") {
         $query = "INSERT INTO voyages (nombre_places, id_voiture, distance, etape_depart_voyage, etape_arrive_voyage) VALUES ($_POST[nombre_de_place], $id_voiture, $_POST[distance], $etape_depart_voyage, $etape_arrivee_voyage);";
     }
 } elseif ($table === "reservations") {
-    $page = "trajets";
+    $page = "trajets.php";
     $query = "SELECT COUNT(*) FROM etudiants WHERE id_etudiant = $_POST[id_etudiant] AND mot_de_passe = '$_POST[mot_de_passe]';";
     $res = pg_query($dbconn, $query);
     $count = pg_fetch_row($res);

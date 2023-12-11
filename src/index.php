@@ -197,7 +197,7 @@
           </div>
           <div class="input-group mb-3">
             <select name="id_ville_arrivee" class="form-select" aria-label="Default select example">
-              <option selected>Sélectionner une ville de d'arrivée'</option>
+              <option selected>Sélectionner une ville de d'arrivée</option>
               <?php
               $query = "SELECT id_ville, nom FROM villes ORDER BY nom;";
               $result = pg_query($db_handle, $query);

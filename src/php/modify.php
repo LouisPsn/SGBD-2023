@@ -38,7 +38,8 @@ if ($table === "etudiants") {
     }
 } elseif ($table === "reservations") {
     $page = "trajets.php";
-    $query = "SELECT COUNT(id_etudiant) FROM etudiants WHERE id_etudiant = $_POST[id_etudiant] AND mot_de_passe = '$_POST[ancien_mot_de_passe]';";
+    // function_alert("$_POST[id_etudiant] $_POST[mot_de_passe]", $page);
+    $query = "SELECT COUNT(id_etudiant) FROM etudiants WHERE id_etudiant = $_POST[id_etudiant] AND mot_de_passe = '$_POST[mot_de_passe]';";
     $res = pg_query($dbconn, $query);
     $count = pg_fetch_row($res);
     if ($count[0] > 0) {
